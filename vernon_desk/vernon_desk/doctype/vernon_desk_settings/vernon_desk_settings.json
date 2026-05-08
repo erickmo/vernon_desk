@@ -1,0 +1,19 @@
+{
+  "doctype": "DocType",
+  "name": "Vernon Desk Settings",
+  "module": "Vernon Desk",
+  "issingle": 1,
+  "fields": [
+    {
+      "fieldname": "theme",
+      "fieldtype": "Select",
+      "label": "Theme",
+      "options": "cosmic_ocean\naurora_borealis\nsunset_dusk\nmidnight_sapphire",
+      "default": "cosmic_ocean",
+      "reqd": 1
+    }
+  ],
+  "permissions": [
+    {"role": "System Manager", "read": 1, "write": 1, "create": 1, "delete": 0}
+  ]
+}
