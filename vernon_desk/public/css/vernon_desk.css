@@ -471,7 +471,7 @@ label, .control-label {
     background: #1e293b !important;
     color: #fff !important;
     border-color: #2d3f55 !important;
-    font-size: 0.68rem !important;
+    font-size: var(--fs-2xs) !important;
     font-weight: 600 !important;
     font-family: var(--vd-font) !important;
     letter-spacing: 0.05em !important;
@@ -485,7 +485,7 @@ label, .control-label {
     background: #1e293b !important;
     color: #fff !important;
     border-color: #2d3f55 !important;
-    font-size: 0.68rem !important;
+    font-size: var(--fs-2xs) !important;
     font-weight: 600 !important;
     letter-spacing: 0.05em !important;
     text-transform: uppercase !important;
@@ -504,7 +504,7 @@ label, .control-label {
 .list-row-head .list-row-col,
 .list-row-head .list-header-fields .list-subject-field {
     color: rgba(255,255,255,0.75) !important;
-    font-size: 0.68rem !important;
+    font-size: var(--fs-2xs) !important;
     font-weight: 600 !important;
     letter-spacing: 0.05em !important;
     text-transform: uppercase !important;
@@ -513,7 +513,7 @@ label, .control-label {
 /* ── List rows ─────────────────────────────────────────────── */
 .list-row {
     font-family: var(--vd-font) !important;
-    font-size: 0.82rem !important;
+    font-size: var(--fs-sm) !important;
     border-bottom: 1px solid #f0f3f8 !important;
     transition: background 0.08s var(--vd-ease) !important;
 }
@@ -526,7 +526,7 @@ label, .control-label {
 /* ── Indicators ────────────────────────────────────────────── */
 .indicator-pill {
     font-family: var(--vd-font) !important;
-    font-size: 0.68rem !important;
+    font-size: var(--fs-2xs) !important;
     font-weight: 500 !important;
     letter-spacing: 0.01em !important;
     border-radius: 20px !important;
@@ -536,7 +536,7 @@ label, .control-label {
 .breadcrumb-area .breadcrumb,
 .page-head .breadcrumb {
     font-family: var(--vd-font) !important;
-    font-size: 0.74rem !important;
+    font-size: var(--fs-xs) !important;
     color: #64748b !important;
 }
 .breadcrumb-area .breadcrumb a,
@@ -554,7 +554,7 @@ label, .control-label {
 .navbar-search .form-control,
 #navbar-search {
     font-family: var(--vd-font) !important;
-    font-size: 0.78rem !important;
+    font-size: var(--fs-sm) !important;
     background: #f1f3f6 !important;
     border: 1px solid #dde3ed !important;
     border-radius: 7px !important;
