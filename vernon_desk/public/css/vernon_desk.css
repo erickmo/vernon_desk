@@ -422,7 +422,7 @@ body::after {
     background: #f9fafb !important;
     padding: 10px 16px !important;
     border-bottom: 1px solid #eef1f6 !important;
-    border-radius: 0 !important;
+    border-radius: 10px 10px 0 0 !important;
 }
 .form-section .section-head .section-title {
     font-size: var(--fs-xs) !important;
@@ -437,7 +437,7 @@ body::after {
 .section-body {
     padding: 16px !important;
 }
-.frappe-control {
+.section-body .frappe-control {
     margin-bottom: 4px !important;
 }
 .section-columns .form-column {
@@ -645,7 +645,7 @@ label, .control-label {
     border: none !important;
     color: #64748b !important;
     opacity: 1 !important;
-    font-size: 18px !important;
+    font-size: var(--fs-xl) !important;
     line-height: 1 !important;
     padding: 0 !important;
     display: flex !important;
