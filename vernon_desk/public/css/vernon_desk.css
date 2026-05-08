@@ -433,6 +433,17 @@ body::after {
     line-height: var(--lh-tight) !important;
 }
 
+/* ── Section body: breathing room ─────────────────────────── */
+.section-body {
+    padding: 16px !important;
+}
+.frappe-control {
+    margin-bottom: 4px !important;
+}
+.section-columns .form-column {
+    padding: 0 8px !important;
+}
+
 /* ── Form inputs ───────────────────────────────────────────── */
 .form-control,
 .input-with-feedback {
