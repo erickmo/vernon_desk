@@ -433,7 +433,7 @@ body::after {
     line-height: var(--lh-tight) !important;
 }
 
-/* ── Section body: breathing room ─────────────────────────── */
+/* ── Section body: spacing (separate from card group above — padding applies only to .section-body, not to .frappe-card/.form-section) ─── */
 .section-body {
     padding: 16px !important;
 }
