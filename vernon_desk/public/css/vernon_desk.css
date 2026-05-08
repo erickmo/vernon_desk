@@ -388,6 +388,24 @@ body::after {
     color: #0f172a !important;
 }
 
+/* ── Page content ──────────────────────────────────────────── */
+.page-content {
+    font-size: var(--fs-base) !important;
+    line-height: var(--lh-normal) !important;
+}
+.page-content h2 { font-size: var(--fs-xl)   !important; font-weight: 700 !important; line-height: var(--lh-tight) !important; }
+.page-content h3 { font-size: var(--fs-lg)   !important; font-weight: 600 !important; line-height: var(--lh-tight) !important; }
+.page-content h4,
+.page-content h5,
+.page-content h6 { font-size: var(--fs-base) !important; font-weight: 600 !important; }
+.page-content .section-head,
+.page-content .section-head .section-title { font-size: var(--fs-lg) !important; font-weight: 600 !important; line-height: var(--lh-tight) !important; }
+.page-content p,
+.page-content .description { font-size: var(--fs-base) !important; line-height: var(--lh-normal) !important; }
+.page-content .help-box,
+.page-content .text-muted  { font-size: var(--fs-xs)   !important; }
+.page-content .alert        { font-size: var(--fs-sm)   !important; }
+
 /* ── Cards ─────────────────────────────────────────────────── */
 .frappe-card,
 .form-section,
@@ -396,6 +414,23 @@ body::after {
     border: 1px solid #e4e9f0 !important;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 2px 12px rgba(0,0,0,0.03) !important;
     background: #fff !important;
+}
+
+/* ── Section head: accent stripe ──────────────────────────── */
+.form-section .section-head {
+    border-left: 3px solid var(--vd-accent, #6b5b95) !important;
+    background: #f9fafb !important;
+    padding: 10px 16px !important;
+    border-bottom: 1px solid #eef1f6 !important;
+    border-radius: 0 !important;
+}
+.form-section .section-head .section-title {
+    font-size: var(--fs-xs) !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.06em !important;
+    color: #374151 !important;
+    line-height: var(--lh-tight) !important;
 }
 
 /* ── Form inputs ───────────────────────────────────────────── */
