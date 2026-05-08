@@ -615,3 +615,55 @@ label, .control-label {
     border-color: var(--vd-accent, #6b5b95) !important;
     box-shadow: 0 0 0 3px rgba(107,91,149,0.12) !important;
 }
+
+/* ── Modal / Dialog ────────────────────────────────────────── */
+.modal-content {
+    font-family: var(--vd-font) !important;
+    border-radius: 12px !important;
+    border: 1px solid #e0e7f0 !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06) !important;
+    overflow: hidden !important;
+}
+.modal-header {
+    background: #f9fafb !important;
+    padding: 14px 20px !important;
+    border-bottom: 1px solid #eef1f6 !important;
+    display: flex !important;
+    align-items: center !important;
+}
+.modal-title {
+    font-size: var(--fs-base) !important;
+    font-weight: 700 !important;
+    color: #1e293b !important;
+    line-height: var(--lh-tight) !important;
+}
+.modal-header .close,
+.modal-header [data-dismiss="modal"] {
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 8px !important;
+    background: #f1f5f9 !important;
+    border: none !important;
+    color: #64748b !important;
+    opacity: 1 !important;
+    font-size: 18px !important;
+    line-height: 1 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: background 0.1s var(--vd-ease), color 0.1s var(--vd-ease) !important;
+}
+.modal-header .close:hover,
+.modal-header [data-dismiss="modal"]:hover {
+    background: #e2e8f0 !important;
+    color: #374151 !important;
+}
+.modal-body {
+    padding: 20px !important;
+}
+.modal-footer {
+    background: #f9fafb !important;
+    padding: 12px 20px !important;
+    border-top: 1px solid #eef1f6 !important;
+}
