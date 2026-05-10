@@ -43,15 +43,34 @@ function vd_el(tag, attrs, text) {
     return el;
 }
 
+/* chevron svg */
+function vd_chevron_svg(cls) {
+    const ns = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(ns, "svg");
+    svg.setAttribute("viewBox", "0 0 16 16");
+    svg.setAttribute("fill", "none");
+    svg.setAttribute("width", "10"); svg.setAttribute("height", "10");
+    if (cls) svg.setAttribute("class", cls);
+    const path = document.createElementNS(ns, "path");
+    path.setAttribute("d", "M4 6l4 4 4-4");
+    path.setAttribute("stroke", "currentColor");
+    path.setAttribute("stroke-width", "1.5");
+    path.setAttribute("stroke-linecap", "round");
+    path.setAttribute("stroke-linejoin", "round");
+    svg.appendChild(path);
+    return svg;
+}
+
 /* ── Main object ────────────────────────────────────────────── */
 vernon_desk = {
     _nav2_bound: false,
+    _nm_open: null,
 
     init() {
-        /* toolbar_setup fires after Frappe renders navbar HTML into DOM */
         $(document).on("toolbar_setup", () => {
             this.apply_theme();
             this.setup_nav1();
+            this.setup_nav_main();
             this.setup_nav2();
             this.bind_route_change();
         });
@@ -67,104 +86,129 @@ vernon_desk = {
     /* ── Nav1 ──────────────────────────────────────────────── */
     setup_nav1() {
         this.inject_logo();
-        this.inject_main_menu();
     },
 
     inject_logo() {
         const brand = document.querySelector(".navbar-brand.navbar-home");
         if (!brand || document.getElementById("vd-logo")) return;
-
         const logo = vd_el("a", { id: "vd-logo", href: "/" });
         logo.appendChild(vd_el("span", { id: "vd-logo-mark" }, "V"));
         logo.appendChild(vd_el("span", {}, "Vernon"));
         brand.after(logo);
     },
 
-    inject_main_menu() {
-        const container = document.querySelector(".navbar .container");
-        if (!container || document.getElementById("vd-main-menu-btn")) return;
+    /* ── Nav-main: module bar with dropdowns ───────────────── */
+    setup_nav_main() {
+        const stickyTop = document.querySelector(".sticky-top");
+        if (!stickyTop || document.getElementById("vd-nav-main")) return;
 
-        const ns = "http://www.w3.org/2000/svg";
-
-        /* ── Button ── */
-        const btn = vd_el("button", {
-            id: "vd-main-menu-btn",
-            "aria-expanded": "false",
-            "aria-label": "Toggle applications menu",
-        });
-
-        const menuSvg = document.createElementNS(ns, "svg");
-        menuSvg.setAttribute("viewBox", "0 0 16 16");
-        menuSvg.setAttribute("fill", "currentColor");
-        menuSvg.setAttribute("width", "14");
-        menuSvg.setAttribute("height", "14");
-        [["0", "2.5"], ["0", "7.25"], ["0", "12"]].forEach(([x, y]) => {
-            const r = document.createElementNS(ns, "rect");
-            r.setAttribute("x", x); r.setAttribute("y", y);
-            r.setAttribute("width", "16"); r.setAttribute("height", "1.5");
-            r.setAttribute("rx", "0.75");
-            menuSvg.appendChild(r);
-        });
-        btn.appendChild(menuSvg);
-        btn.appendChild(vd_el("span", {}, "Apps"));
-
-        const chSvg = document.createElementNS(ns, "svg");
-        chSvg.id = "vd-chevron";
-        chSvg.setAttribute("viewBox", "0 0 16 16");
-        chSvg.setAttribute("fill", "none");
-        chSvg.setAttribute("width", "12");
-        chSvg.setAttribute("height", "12");
-        const chPath = document.createElementNS(ns, "path");
-        chPath.setAttribute("d", "M4 6l4 4 4-4");
-        chPath.setAttribute("stroke", "currentColor");
-        chPath.setAttribute("stroke-width", "1.5");
-        chPath.setAttribute("stroke-linecap", "round");
-        chPath.setAttribute("stroke-linejoin", "round");
-        chSvg.appendChild(chPath);
-        btn.appendChild(chSvg);
-
-        /* ── Dropdown ── */
-        const dropdown = vd_el("div", { id: "vd-main-menu-dropdown" });
-        dropdown.appendChild(vd_el("div", { id: "vd-dropdown-label" }, "Applications"));
-
-        const grid = vd_el("div", { id: "vd-module-grid" });
         const workspaces = (frappe.boot && frappe.boot.allowed_workspaces) || [];
-        const seen = new Set();
+        if (!workspaces.length) return;
+
+        /* Group workspaces by module */
+        const modules = new Map();
         workspaces.forEach((ws) => {
-            if (!ws.module || seen.has(ws.module)) return;
-            seen.add(ws.module);
-            const card = vd_el("a", {
-                class: "vd-module-card",
-                href: "/app/" + frappe.router.slug(ws.name),
+            if (!ws.module) return;
+            if (!modules.has(ws.module)) modules.set(ws.module, []);
+            modules.get(ws.module).push(ws);
+        });
+
+        const nav = vd_el("nav", { id: "vd-nav-main" });
+        const scroll = vd_el("div", { id: "vd-nm-scroll" });
+
+        modules.forEach((wsList, moduleName) => {
+            const item = vd_el("div", { class: "vd-nm-item" });
+
+            const trigger = vd_el("button", { class: "vd-nm-trigger" });
+            trigger.appendChild(vd_el("span", {}, moduleName));
+            trigger.appendChild(vd_chevron_svg("vd-nm-chevron"));
+            item.appendChild(trigger);
+
+            const dropdown = vd_el("div", { class: "vd-nm-dropdown" });
+            wsList.forEach((ws) => {
+                const link = vd_el("a", {
+                    class: "vd-nm-dd-item",
+                    href: "/app/" + frappe.router.slug(ws.name),
+                });
+                link.appendChild(vd_el("span", { class: "vd-nm-dd-icon" }, vd_icon(ws.module)));
+                link.appendChild(vd_el("span", {}, ws.name));
+                dropdown.appendChild(link);
             });
-            card.appendChild(vd_el("span", { class: "vd-module-icon" }, vd_icon(ws.module)));
-            card.appendChild(vd_el("span", {}, ws.module));
-            grid.appendChild(card);
+            item.appendChild(dropdown);
+
+            /* Toggle on click — teleport dropdown to body to escape overflow clipping */
+            trigger.addEventListener("click", (e) => {
+                e.stopPropagation();
+                const isOpen = this._nm_open && this._nm_open.trigger === trigger;
+                this._close_nm_all();
+                if (!isOpen) {
+                    const rect = trigger.getBoundingClientRect();
+                    dropdown.style.cssText = [
+                        "position:fixed",
+                        `top:${rect.bottom + 4}px`,
+                        `left:${rect.left}px`,
+                        "z-index:9999",
+                    ].join(";");
+                    document.body.appendChild(dropdown);
+                    dropdown.classList.add("open");
+                    trigger.classList.add("open");
+                    this._nm_open = { dropdown, trigger, item };
+                }
+            });
+
+            scroll.appendChild(item);
         });
-        dropdown.appendChild(grid);
 
-        /* ── Toggle logic ── */
-        const closeMenu = () => {
-            dropdown.classList.remove("open");
-            btn.classList.remove("open");
-            btn.setAttribute("aria-expanded", "false");
-        };
+        nav.appendChild(scroll);
 
-        btn.addEventListener("click", (e) => {
-            e.stopPropagation();
-            const open = dropdown.classList.toggle("open");
-            btn.classList.toggle("open", open);
-            btn.setAttribute("aria-expanded", String(open));
-        });
-
-        document.addEventListener("click", closeMenu);
+        /* Close on outside click */
+        document.addEventListener("click", () => this._close_nm_all());
         document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape") closeMenu();
+            if (e.key === "Escape") this._close_nm_all();
         });
-        grid.addEventListener("click", closeMenu);
 
-        container.appendChild(btn);
-        document.body.appendChild(dropdown);
+        /* Insert right after .navbar */
+        const navbar = stickyTop.querySelector(".navbar");
+        if (navbar && navbar.nextSibling) {
+            stickyTop.insertBefore(nav, navbar.nextSibling);
+        } else {
+            stickyTop.appendChild(nav);
+        }
+    },
+
+    _close_nm_all() {
+        if (!this._nm_open) return;
+        const { dropdown, trigger, item } = this._nm_open;
+        dropdown.classList.remove("open");
+        trigger.classList.remove("open");
+        dropdown.style.cssText = "";
+        item.appendChild(dropdown);
+        this._nm_open = null;
+    },
+
+    _update_nm_active(route) {
+        const nav = document.getElementById("vd-nav-main");
+        if (!nav) return;
+
+        const workspaceSlug = route && route[0] === "app" ? route[1] : null;
+        const workspaces = (frappe.boot && frappe.boot.allowed_workspaces) || [];
+        const ws = workspaces.find(
+            (w) => frappe.router && frappe.router.slug(w.name) === workspaceSlug
+        );
+        const activeModule = ws && ws.module;
+
+        nav.querySelectorAll(".vd-nm-trigger").forEach((trigger) => {
+            const moduleName = trigger.querySelector("span:first-child").textContent;
+            trigger.classList.toggle("active", moduleName === activeModule);
+        });
+
+        /* Also update active dd-item */
+        nav.querySelectorAll(".vd-nm-dd-item").forEach((link) => {
+            link.classList.toggle(
+                "active",
+                workspaceSlug && link.getAttribute("href").includes(workspaceSlug)
+            );
+        });
     },
 
     /* ── Nav2 ──────────────────────────────────────────────── */
@@ -177,12 +221,14 @@ vernon_desk = {
     bind_route_change() {
         if (this._nav2_bound) return;
         this._nav2_bound = true;
-
         $(document).on("page-change", () => {
-            this.render_nav2(frappe.get_route());
+            const route = frappe.get_route();
+            this.render_nav2(route);
+            this._update_nm_active(route);
         });
-
-        this.render_nav2(frappe.get_route());
+        const r = frappe.get_route();
+        this.render_nav2(r);
+        this._update_nm_active(r);
     },
 
     render_nav2(route) {
@@ -221,17 +267,20 @@ vernon_desk = {
         return route[0] || null;
     },
 
-    get_module_pages(moduleSlug) {
-        if (!moduleSlug || !frappe.router || typeof frappe.router.slug !== "function") return [];
-        const mww = (frappe.boot && frappe.boot.module_wise_workspaces) || {};
-        const matchedKey = Object.keys(mww).find(
-            (key) => frappe.router.slug(key) === moduleSlug
+    get_module_pages(workspaceSlug) {
+        if (!workspaceSlug || !frappe.router || typeof frappe.router.slug !== "function") return [];
+        const workspaces = (frappe.boot && frappe.boot.allowed_workspaces) || [];
+        const ws = workspaces.find(
+            (w) => frappe.router.slug(w.name) === workspaceSlug
         );
-        if (!matchedKey) return [];
-        return mww[matchedKey].map((wsName) => ({
-            label: wsName,
-            route: "/app/" + frappe.router.slug(wsName),
-        }));
+        const moduleName = ws && ws.module;
+        if (!moduleName) return [];
+        return workspaces
+            .filter((w) => w.module === moduleName)
+            .map((w) => ({
+                label: w.name,
+                route: "/app/" + frappe.router.slug(w.name),
+            }));
     },
 
     slug_to_title(slug) {

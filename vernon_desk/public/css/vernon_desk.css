@@ -99,6 +99,7 @@
     width: 100% !important;
     max-width: 100% !important;
 }
+.layout-main-section { margin-top: 15px !important; }
 
 /* ── Sticky wrapper ────────────────────────────────────────── */
 .sticky-top {
@@ -299,6 +300,8 @@ body::after {
 /* ── Apps button (hidden — replaced by nav-main) ────────────── */
 #vd-main-menu-btn { display: none !important; }
 #vd-main-menu-dropdown { display: none !important; }
+.nav-item.dropdown-help { display: none !important; }
+.sidebar-toggle-btn { display: none !important; }
 
 /* ── Nav2: context bar ─────────────────────────────────────── */
 #vd-nav2 {
@@ -350,7 +353,7 @@ body::after {
 .page-body {
     background: #f4f6f9 !important;
     min-height: calc(100vh - var(--vd-total-nav)) !important;
-    padding-bottom: 80px !important;
+    padding-bottom: 24px !important;
     position: relative !important;
     z-index: 1 !important;
 }
@@ -369,7 +372,17 @@ body::after {
 
 /* ── Gap: nav2 → content ────────────────────────────────────── */
 .page-body .page-container { padding-top: 15px !important; }
-.page-body .page-head      { padding-top: 8px !important; margin-bottom: 4rem !important; box-shadow: 0 4px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04) !important; }
+.page-body .page-head {
+    padding-top: 8px !important;
+    margin-bottom: 1rem !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04) !important;
+    border-bottom: 1px solid #e4e9f0 !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+/* ── Workspace links ───────────────────────────────────────── */
+.links-widget-box .link-item.ellipsis { font-size: var(--fs-sm); }
 
 /* ── Main content font: Inter ──────────────────────────────── */
 .page-body,
@@ -406,14 +419,32 @@ body::after {
 .page-content .text-muted  { font-size: var(--fs-xs)   !important; }
 .page-content .alert        { font-size: var(--fs-sm)   !important; }
 
+/* ── Zero border-radius: flat design ──────────────────────── */
+.page-body *,
+.modal-content, .modal-content *,
+.vd-nm-dropdown, .vd-nm-dropdown * {
+    border-radius: 0 !important;
+}
+/* Restore toggle pill shape */
+.page-body input[type="checkbox"] { border-radius: 9px !important; }
+.page-body input[type="checkbox"]::after { border-radius: 50% !important; }
+
 /* ── Cards ─────────────────────────────────────────────────── */
 .frappe-card,
 .form-section,
 .section-body {
-    border-radius: 10px !important;
     border: 1px solid #e4e9f0 !important;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 2px 12px rgba(0,0,0,0.03) !important;
     background: #fff !important;
+}
+.form-section {
+    margin-bottom: 1rem !important;
+}
+.form-section.card-section {
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    margin-bottom: 0 !important;
 }
 
 /* ── Section head: accent stripe ──────────────────────────── */
@@ -422,7 +453,7 @@ body::after {
     background: #f9fafb !important;
     padding: 10px 16px !important;
     border-bottom: 1px solid #eef1f6 !important;
-    border-radius: 10px 10px 0 0 !important;
+    margin-bottom: 0 !important;
 }
 .form-section .section-head .section-title {
     font-size: var(--fs-xs) !important;
@@ -436,6 +467,9 @@ body::after {
 /* ── Section body: spacing (separate from card group above — padding applies only to .section-body, not to .frappe-card/.form-section) ─── */
 .section-body {
     padding: 16px !important;
+    padding-bottom: 24px !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 .section-body .frappe-control {
     margin-bottom: 4px !important;
@@ -450,7 +484,7 @@ body::after {
     font-family: var(--vd-font) !important;
     font-size: var(--fs-sm) !important;
     border: 1px solid #dde3ed !important;
-    border-radius: 7px !important;
+    border-radius: 0 !important;
     color: #1e293b !important;
     transition: border-color 0.12s var(--vd-ease), box-shadow 0.12s var(--vd-ease) !important;
 }
@@ -469,8 +503,31 @@ label, .control-label {
     text-transform: uppercase !important;
 }
 
+/* ── Dropdown items ────────────────────────────────────────── */
+a.dropdown-item,
+.dropdown-item {
+    font-size: var(--fs-sm) !important;
+    font-family: var(--vd-font) !important;
+}
+
+/* ── Tabs ───────────────────────────────────────────────────── */
+.nav-tabs .nav-link,
+.nav-tabs > li > a,
+.form-tabs-list .nav-link,
+.form-tabs-list > li > a {
+    font-size: var(--fs-xs) !important;
+    font-family: var(--vd-font) !important;
+}
+.form-tabs-list > .nav-item > .nav-link,
+.form-tabs-list .nav-link {
+    font-size: var(--fs-sm) !important;
+}
+.nav-link {
+    font-size: var(--fs-lg) !important;
+}
+
 /* ── Buttons ────────────────────────────────────────────────── */
-.btn { font-family: var(--vd-font) !important; font-weight: 500 !important; }
+.btn { font-family: var(--vd-font) !important; font-weight: 500 !important; font-size: var(--fs-sm) !important; border-radius: 0 !important; }
 .btn-xs { font-size: var(--fs-xs) !important; }
 .btn-sm { font-size: var(--fs-xs) !important; }
 
@@ -499,6 +556,7 @@ label, .control-label {
     background: #fff !important;
     border: 1px solid #dde3ed !important;
     color: #374151 !important;
+    font-size: var(--fs-xs) !important;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
     transition: background 0.10s var(--vd-ease), border-color 0.10s, box-shadow 0.10s !important;
 }
@@ -547,11 +605,11 @@ label, .control-label {
 .dt-header .dt-cell .btn-reset:hover { color: #fff !important; }
 
 /* List view header */
-.list-row-head { background: #1e293b !important; border-radius: 8px 8px 0 0 !important; }
+.list-row-head { background: #f1f5f9 !important; border-radius: 0 !important; border-bottom: 1px solid #e4e9f0 !important; }
 .list-row-head .list-subject-field,
 .list-row-head .list-row-col,
 .list-row-head .list-header-fields .list-subject-field {
-    color: rgba(255,255,255,0.75) !important;
+    color: #64748b !important;
     font-size: var(--fs-2xs) !important;
     font-weight: 600 !important;
     letter-spacing: 0.05em !important;
@@ -670,4 +728,198 @@ label, .control-label {
     background: #f9fafb !important;
     padding: 12px 20px !important;
     border-top: 1px solid #eef1f6 !important;
+}
+
+/* ── Checkbox → Toggle ─────────────────────────────────────── */
+.page-body input[type="checkbox"] {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    width: 32px !important;
+    height: 18px !important;
+    min-width: 32px !important;
+    border-radius: 9px !important;
+    background: #cbd5e1 !important;
+    border: none !important;
+    cursor: pointer !important;
+    position: relative !important;
+    vertical-align: middle !important;
+    transition: background 0.18s var(--vd-ease) !important;
+    flex-shrink: 0 !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+.page-body input[type="checkbox"]::after {
+    content: '' !important;
+    position: absolute !important;
+    width: 14px !important;
+    height: 14px !important;
+    border-radius: 50% !important;
+    background: #fff !important;
+    top: 2px !important;
+    left: 2px !important;
+    transition: left 0.18s var(--vd-ease) !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.18) !important;
+}
+.page-body input[type="checkbox"]:checked {
+    background: var(--vd-accent, #6b5b95) !important;
+}
+.page-body input[type="checkbox"]:checked::after {
+    left: 16px !important;
+}
+.page-body input[type="checkbox"]:focus {
+    box-shadow: 0 0 0 3px rgba(107, 91, 149, 0.18) !important;
+}
+.page-body .checkbox label,
+.page-body .frappe-control[data-fieldtype="Check"] label {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    cursor: pointer !important;
+}
+
+/* ── Unit checkbox font ────────────────────────────────────── */
+.unit-checkbox,
+.unit-checkbox label,
+.unit-checkbox .label-area {
+    font-size: var(--fs-sm) !important;
+    font-family: var(--vd-font) !important;
+}
+
+/* ── Checkbox label area ───────────────────────────────────── */
+.checkbox .label-area,
+.checkbox > label,
+.checkbox > label * {
+    font-size: var(--fs-sm) !important;
+    font-family: var(--vd-font) !important;
+}
+
+/* ── Scroll to top ─────────────────────────────────────────── */
+.scroll-to-top {
+    border-radius: 100% !important;
+    position: fixed !important;
+    bottom: 24px !important;
+    right: 24px !important;
+    left: auto !important;
+}
+
+/* ── Modal: flat corners, no border on inner form-section ──── */
+.modal-header,
+.modal-footer,
+.modal-content {
+    border-radius: 0 !important;
+}
+.modal-body .form-section {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* ── Shortcut widget font ──────────────────────────────────── */
+.widget.shortcut-widget-box,
+.widget.shortcut-widget-box * {
+    font-size: var(--fs-sm) !important;
+    font-family: var(--vd-font) !important;
+}
+
+/* ── Card name sections ────────────────────────────────────── */
+div[card_name] {
+    background: #fff !important;
+    border: 1px solid #e4e9f0 !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 2px 12px rgba(0,0,0,0.03) !important;
+    padding: 0 !important;
+    margin-bottom: 1rem !important;
+}
+
+/* ── Widget body / links widget ───────────────────────────── */
+.widget.links-widget-box {
+    padding: 0 !important;
+}
+.widget-body {
+    margin: 12px 16px !important;
+}
+.widget-body .link-item,
+.widget-body a {
+    transition: background 0.10s var(--vd-ease), color 0.10s !important;
+}
+.widget-body .link-item:hover,
+.widget-body a:hover {
+    background: rgba(0,0,0,0.04) !important;
+    color: var(--vd-accent, #6b5b95) !important;
+}
+
+/* ── Widget head: section-head style ──────────────────────── */
+.widget-head {
+    border-left: 3px solid var(--vd-accent, #6b5b95) !important;
+    background: #f9fafb !important;
+    padding: 10px 16px !important;
+    border-bottom: 1px solid #eef1f6 !important;
+    margin-bottom: 0 !important;
+    font-size: var(--fs-xs) !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.06em !important;
+    color: #374151 !important;
+    line-height: var(--lh-tight) !important;
+    font-family: var(--vd-font) !important;
+}
+
+/* ── Shortcut widget head: compact button style ────────────── */
+.shortcut-widget-box > .widget-head {
+    border-left: none !important;
+    background: transparent !important;
+    border-bottom: none !important;
+    padding: 8px 12px !important;
+    font-size: var(--fs-xs) !important;
+    font-weight: 600 !important;
+    color: rgba(0,0,0,0.45) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+}
+
+/* ── CE header: section-head style ────────────────────────── */
+.ce-header {
+    border-left: 3px solid var(--vd-accent, #6b5b95) !important;
+    background: #f9fafb !important;
+    padding: 10px 16px !important;
+    border-bottom: 1px solid #eef1f6 !important;
+    margin-bottom: 0 !important;
+    font-size: var(--fs-xs) !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.06em !important;
+    color: #374151 !important;
+    line-height: var(--lh-tight) !important;
+    font-family: var(--vd-font) !important;
+}
+
+/* ── Comments / Timeline: card ─────────────────────────────── */
+.form-footer,
+.form-footer * {
+    font-size: var(--fs-xs) !important;
+}
+.form-footer {
+    background: #fff !important;
+    border: 1px solid #e4e9f0 !important;
+    padding: 16px !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 2px 12px rgba(0,0,0,0.03) !important;
+    margin-top: 1rem !important;
+}
+.new-timeline,
+.form-footer .timeline-wrapper,
+.timeline-wrapper {
+    background: #fff !important;
+    border: 1px solid #e4e9f0 !important;
+    padding: 16px !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 2px 12px rgba(0,0,0,0.03) !important;
+    margin-top: 1rem !important;
+}
+.form-footer .comment-box,
+.new-comment-row {
+    background: #f9fafb !important;
+    border: 1px solid #e4e9f0 !important;
+    padding: 12px !important;
+    margin-top: 12px !important;
+}
+.comment-input-wrapper {
+    border: none !important;
+    padding: 0 !important;
 }
