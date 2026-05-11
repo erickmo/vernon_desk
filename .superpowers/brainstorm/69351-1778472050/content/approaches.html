@@ -1,0 +1,38 @@
+<h2>3 Pendekatan Modernisasi</h2>
+<p class="subtitle">Stripe-style light mode — List + Form + Dashboard</p>
+
+<div class="options">
+  <div class="option" data-choice="surface" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Surface Polish — CSS Only</h3>
+      <p>Override semua 3 area sekaligus, pure CSS. Cepat, aman, konsisten dengan cara kerja saat ini. Risiko: komponen Frappe tertentu susah di-style tanpa JS (empty state, filter chips).</p>
+      <div class="pros-cons" style="margin-top:12px">
+        <div class="pros"><h4>Pro</h4><ul><li>1 PR, cepat ship</li><li>Zero JS risk</li></ul></div>
+        <div class="cons"><h4>Con</h4><ul><li>Beberapa area tidak bisa 100%</li></ul></div>
+      </div>
+    </div>
+  </div>
+  <div class="option" data-choice="deep" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Deep Polish — CSS + JS</h3>
+      <p>CSS untuk layout/warna, JS untuk elemen dinamis: empty state custom, filter chips aktif, sticky action bar di form. Hasil paling lengkap.</p>
+      <div class="pros-cons" style="margin-top:12px">
+        <div class="pros"><h4>Pro</h4><ul><li>Tampilan paling solid</li><li>Cover semua edge case</li></ul></div>
+        <div class="cons"><h4>Con</h4><ul><li>Lebih banyak JS → risiko konflik Frappe</li></ul></div>
+      </div>
+    </div>
+  </div>
+  <div class="option" data-choice="phased" onclick="toggleSelect(this)">
+    <div class="letter">C ★</div>
+    <div class="content">
+      <h3>Phased — Satu Area Per PR (Rekomendasi)</h3>
+      <p>List view dulu → validasi → Form view → validasi → Dashboard. Setiap fase shippable sendiri. CSS + JS sesuai kebutuhan tiap area.</p>
+      <div class="pros-cons" style="margin-top:12px">
+        <div class="pros"><h4>Pro</h4><ul><li>Validasi bertahap</li><li>Rollback mudah per area</li><li>Risk kecil</li></ul></div>
+        <div class="cons"><h4>Con</h4><ul><li>3 PR, lebih lama total</li></ul></div>
+      </div>
+    </div>
+  </div>
+</div>

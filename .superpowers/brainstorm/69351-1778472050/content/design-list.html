@@ -1,0 +1,105 @@
+<h2>Design Preview — List View</h2>
+<p class="subtitle">Stripe-style light mode. Klik area untuk lihat detail. Approve atau minta revisi.</p>
+
+<div class="mockup" style="background:#f6f8fa;border:1px solid #e1e4e8;border-radius:8px;overflow:hidden;font-family:'Inter',sans-serif;">
+
+  <!-- Filter bar -->
+  <div style="background:#fff;border-bottom:1px solid #e1e4e8;padding:10px 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+    <span style="font-size:11px;font-weight:600;color:#6e7781;text-transform:uppercase;letter-spacing:.06em;margin-right:4px;">Filter:</span>
+    <span style="background:#dbeafe;color:#1d4ed8;font-size:12px;font-weight:500;padding:3px 10px;border-radius:20px;display:inline-flex;align-items:center;gap:6px;">
+      Status: Open <span style="cursor:pointer;opacity:.7;">×</span>
+    </span>
+    <span style="background:#dcfce7;color:#15803d;font-size:12px;font-weight:500;padding:3px 10px;border-radius:20px;display:inline-flex;align-items:center;gap:6px;">
+      Priority: High <span style="cursor:pointer;opacity:.7;">×</span>
+    </span>
+    <span style="color:#0969da;font-size:12px;cursor:pointer;margin-left:4px;">+ Add filter</span>
+    <div style="margin-left:auto;display:flex;gap:8px;align-items:center;">
+      <span style="font-size:12px;color:#6e7781;">24 results</span>
+    </div>
+  </div>
+
+  <!-- Table header -->
+  <div style="background:#f6f8fa;border-bottom:1px solid #e1e4e8;display:grid;grid-template-columns:32px 1fr 120px 100px 90px 90px;padding:6px 16px;gap:12px;align-items:center;">
+    <input type="checkbox" style="accent-color:#0969da;">
+    <span style="font-size:11px;font-weight:600;color:#6e7781;text-transform:uppercase;letter-spacing:.06em;">Name</span>
+    <span style="font-size:11px;font-weight:600;color:#6e7781;text-transform:uppercase;letter-spacing:.06em;">Customer</span>
+    <span style="font-size:11px;font-weight:600;color:#6e7781;text-transform:uppercase;letter-spacing:.06em;">Status</span>
+    <span style="font-size:11px;font-weight:600;color:#6e7781;text-transform:uppercase;letter-spacing:.06em;">Amount</span>
+    <span style="font-size:11px;font-weight:600;color:#6e7781;text-transform:uppercase;letter-spacing:.06em;">Date</span>
+  </div>
+
+  <!-- Row 1 (hover state) -->
+  <div style="background:#f0f6ff;border-bottom:1px solid #e1e4e8;border-left:3px solid #0969da;display:grid;grid-template-columns:32px 1fr 120px 100px 90px 90px;padding:10px 16px;gap:12px;align-items:center;cursor:pointer;">
+    <input type="checkbox" checked style="accent-color:#0969da;">
+    <span style="font-size:13px;font-weight:500;color:#0969da;">SO-2024-0042</span>
+    <span style="font-size:13px;color:#24292f;">PT Maju Jaya</span>
+    <span style="background:#dbeafe;color:#1d4ed8;font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;width:fit-content;">Open</span>
+    <span style="font-size:13px;color:#24292f;font-variant-numeric:tabular-nums;">Rp 12.5jt</span>
+    <span style="font-size:12px;color:#6e7781;">11 May</span>
+  </div>
+
+  <!-- Row 2 -->
+  <div style="background:#fff;border-bottom:1px solid #e1e4e8;display:grid;grid-template-columns:32px 1fr 120px 100px 90px 90px;padding:10px 16px;gap:12px;align-items:center;cursor:pointer;">
+    <input type="checkbox" style="accent-color:#0969da;">
+    <span style="font-size:13px;font-weight:500;color:#0969da;">SO-2024-0041</span>
+    <span style="font-size:13px;color:#24292f;">CV Sukses Selalu</span>
+    <span style="background:#dcfce7;color:#15803d;font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;width:fit-content;">Submitted</span>
+    <span style="font-size:13px;color:#24292f;font-variant-numeric:tabular-nums;">Rp 8.2jt</span>
+    <span style="font-size:12px;color:#6e7781;">10 May</span>
+  </div>
+
+  <!-- Row 3 -->
+  <div style="background:#fff;border-bottom:1px solid #e1e4e8;display:grid;grid-template-columns:32px 1fr 120px 100px 90px 90px;padding:10px 16px;gap:12px;align-items:center;cursor:pointer;">
+    <input type="checkbox" style="accent-color:#0969da;">
+    <span style="font-size:13px;font-weight:500;color:#0969da;">SO-2024-0040</span>
+    <span style="font-size:13px;color:#24292f;">UD Berkah Abadi</span>
+    <span style="background:#fee2e2;color:#b91c1c;font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;width:fit-content;">Cancelled</span>
+    <span style="font-size:13px;color:#24292f;font-variant-numeric:tabular-nums;">Rp 3.7jt</span>
+    <span style="font-size:12px;color:#6e7781;">9 May</span>
+  </div>
+
+  <!-- Row 4 -->
+  <div style="background:#fff;border-bottom:1px solid #f0f0f0;display:grid;grid-template-columns:32px 1fr 120px 100px 90px 90px;padding:10px 16px;gap:12px;align-items:center;cursor:pointer;">
+    <input type="checkbox" style="accent-color:#0969da;">
+    <span style="font-size:13px;font-weight:500;color:#0969da;">SO-2024-0039</span>
+    <span style="font-size:13px;color:#24292f;">PT Nusa Indah</span>
+    <span style="background:#fef9c3;color:#854d0e;font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;width:fit-content;">Draft</span>
+    <span style="font-size:13px;color:#24292f;font-variant-numeric:tabular-nums;">Rp 21.0jt</span>
+    <span style="font-size:12px;color:#6e7781;">8 May</span>
+  </div>
+
+  <!-- Pagination -->
+  <div style="background:#fff;padding:8px 16px;display:flex;align-items:center;justify-content:space-between;">
+    <span style="font-size:12px;color:#6e7781;">Showing 1–20 of 24</span>
+    <div style="display:flex;gap:4px;">
+      <button style="border:1px solid #e1e4e8;background:#fff;color:#6e7781;font-size:12px;padding:4px 10px;border-radius:6px;cursor:pointer;">← Prev</button>
+      <button style="border:1px solid #0969da;background:#0969da;color:#fff;font-size:12px;padding:4px 10px;border-radius:6px;cursor:pointer;">1</button>
+      <button style="border:1px solid #e1e4e8;background:#fff;color:#24292f;font-size:12px;padding:4px 10px;border-radius:6px;cursor:pointer;">2</button>
+      <button style="border:1px solid #e1e4e8;background:#fff;color:#24292f;font-size:12px;padding:4px 10px;border-radius:6px;cursor:pointer;">Next →</button>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:20px;">
+  <h3>Yang berubah dari Frappe default:</h3>
+  <ul style="font-size:14px;color:#444;line-height:1.8;">
+    <li>Filter bar dengan <strong>active filter chips</strong> (JS inject) — klik × untuk remove</li>
+    <li>Column header <strong>uppercase + muted</strong>, sticky saat scroll</li>
+    <li>Row hover: <strong>bg tint + left border biru</strong> (CSS)</li>
+    <li>Status badge: <strong>rounded pill</strong> dengan warna semantik (Open/Draft/Submitted/Cancelled)</li>
+    <li>Row selection: <strong>checkbox + bulk action bar</strong> muncul di atas (JS)</li>
+    <li>Pagination <strong>compact</strong>, angka aktif solid</li>
+    <li><strong>Empty state</strong> custom jika 0 hasil (JS inject ilustrasi + CTA)</li>
+  </ul>
+</div>
+
+<div class="options" style="margin-top:8px;">
+  <div class="option" data-choice="approve-list" onclick="toggleSelect(this)">
+    <div class="letter">✓</div>
+    <div class="content"><h3>Approve — lanjut ke Form View mockup</h3></div>
+  </div>
+  <div class="option" data-choice="revise-list" onclick="toggleSelect(this)">
+    <div class="letter">✗</div>
+    <div class="content"><h3>Revisi — tulis feedback di terminal</h3></div>
+  </div>
+</div>

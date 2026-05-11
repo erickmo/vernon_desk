@@ -16,11 +16,11 @@ class TestBoot(FrappeTestCase):
         inject_desk_settings(bootinfo)
         self.assertEqual(bootinfo.vernon_desk["theme"], "sunset_dusk")
 
-    def test_inject_desk_settings_defaults_to_cosmic_ocean_when_empty(self):
+    def test_inject_desk_settings_defaults_to_vernon_desk1_when_empty(self):
         frappe.db.set_value(DOCTYPE, DOCTYPE, "theme", "")
         bootinfo = frappe._dict()
         inject_desk_settings(bootinfo)
-        self.assertEqual(bootinfo.vernon_desk["theme"], "cosmic_ocean")
+        self.assertEqual(bootinfo.vernon_desk["theme"], "vernon_desk1")
 
     def tearDown(self):
-        frappe.db.set_value(DOCTYPE, DOCTYPE, "theme", self._original_theme or "cosmic_ocean")
+        frappe.db.set_value(DOCTYPE, DOCTYPE, "theme", self._original_theme or "vernon_desk1")

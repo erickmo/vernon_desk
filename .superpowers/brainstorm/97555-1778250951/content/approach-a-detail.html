@@ -1,0 +1,165 @@
+<h2>Approach A — Before vs After</h2>
+<p class="subtitle">Review setiap perubahan. Klik "Approve" jika setuju, atau ketik revisi di terminal.</p>
+
+<style>
+.compare-block { margin-bottom: 32px; }
+.compare-block h3 { font-size: 13px; font-weight: 700; color: #1e293b; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.compare-block h3 .tag { font-size: 10px; padding: 2px 8px; border-radius: 20px; background: #ede9fe; color: #5b21b6; font-weight: 600; }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.panel { border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; }
+.panel-label { padding: 6px 12px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+.panel-label.before { background: #fee2e2; color: #991b1b; }
+.panel-label.after { background: #dcfce7; color: #166534; }
+.panel-body { padding: 14px; background: #f8fafc; }
+
+/* ── BEFORE styles (current state) ── */
+.b-section { background: #fff; border-radius: 10px; border: 1px solid #e4e9f0; box-shadow: 0 1px 3px rgba(0,0,0,0.05); overflow: hidden; }
+.b-section-head { padding: 8px 12px; font-size: 12px; font-weight: 600; color: #374151; border-bottom: 1px solid #e4e9f0; }
+.b-section-body { padding: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.b-field { display: flex; flex-direction: column; gap: 3px; }
+.b-label { font-size: 10px; font-weight: 600; color: #475569; letter-spacing: 0.01em; }
+.b-inp { height: 30px; border: 1px solid #dde3ed; border-radius: 7px; background: #fff; }
+
+/* ── AFTER styles (proposed) ── */
+.a-section { background: #fff; border-radius: 10px; border: 1px solid #e4e9f0; box-shadow: 0 1px 3px rgba(0,0,0,0.05); overflow: hidden; }
+.a-section-head { padding: 10px 16px; font-size: 10.5px; font-weight: 700; color: #374151; border-bottom: 1px solid #eef1f6; background: #f9fafb; border-left: 3px solid #6b5b95; text-transform: uppercase; letter-spacing: 0.06em; }
+.a-section-body { padding: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.a-field { display: flex; flex-direction: column; gap: 5px; }
+.a-label { font-size: 10px; font-weight: 700; color: #64748b; letter-spacing: 0.05em; text-transform: uppercase; }
+.a-inp { height: 32px; border: 1px solid #dde3ed; border-radius: 7px; background: #fff; }
+
+/* Dialog before */
+.b-dialog { background: #fff; border-radius: 8px; border: 1px solid #e4e9f0; overflow: hidden; }
+.b-dialog-header { padding: 12px 16px; border-bottom: 1px solid #e4e9f0; font-size: 13px; font-weight: 600; color: #1e293b; display: flex; justify-content: space-between; align-items: center; }
+.b-dialog-body { padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+.b-dialog-footer { padding: 10px 16px; border-top: 1px solid #e4e9f0; display: flex; justify-content: flex-end; gap: 8px; background: #f8fafc; }
+.b-btn-p { background: #6b5b95; color: #fff; border: none; border-radius: 6px; padding: 5px 14px; font-size: 11px; font-weight: 600; }
+.b-btn-d { background: #fff; color: #374151; border: 1px solid #dde3ed; border-radius: 6px; padding: 5px 14px; font-size: 11px; }
+
+/* Dialog after */
+.a-dialog { background: #fff; border-radius: 10px; border: 1px solid #e0e7f0; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+.a-dialog-header { padding: 14px 20px; border-bottom: 1px solid #eef1f6; background: #f9fafb; display: flex; justify-content: space-between; align-items: center; }
+.a-dialog-title { font-size: 13px; font-weight: 700; color: #1e293b; }
+.a-dialog-sub { font-size: 10px; color: #94a3b8; margin-top: 1px; }
+.a-close { width: 22px; height: 22px; border-radius: 6px; background: #f1f5f9; border: none; color: #64748b; font-size: 13px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.a-dialog-body { padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+.a-dfield { display: flex; flex-direction: column; gap: 5px; }
+.a-dlabel { font-size: 10px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; }
+.a-dinp { height: 34px; border: 1.5px solid #dde3ed; border-radius: 8px; background: #fff; }
+.a-dialog-footer { padding: 12px 20px; border-top: 1px solid #eef1f6; display: flex; justify-content: flex-end; gap: 8px; background: #f9fafb; }
+.a-btn-p { background: linear-gradient(135deg, #6b5b95, #5a4a84); color: #fff; border: none; border-radius: 7px; padding: 6px 16px; font-size: 11px; font-weight: 600; box-shadow: 0 1px 6px rgba(0,0,0,0.12); }
+.a-btn-d { background: #fff; color: #374151; border: 1px solid #dde3ed; border-radius: 7px; padding: 6px 16px; font-size: 11px; font-weight: 500; }
+
+.approve-row { display: flex; gap: 12px; margin-top: 8px; }
+.approve-btn {
+  padding: 8px 20px; border-radius: 8px; border: 2px solid #6b5b95; background: #fff;
+  color: #6b5b95; font-size: 12px; font-weight: 700; cursor: pointer;
+  transition: all 0.15s;
+}
+.approve-btn:hover, .approve-btn.selected { background: #6b5b95; color: #fff; }
+.delta-list { margin: 0; padding-left: 16px; font-size: 12px; color: #475569; line-height: 1.8; }
+.delta-list li strong { color: #1e293b; }
+</style>
+
+<!-- Section 1: Form Section Header -->
+<div class="compare-block">
+  <h3>1. Section Header <span class="tag">CSS only</span></h3>
+  <div class="split">
+    <div class="panel">
+      <div class="panel-label before">Before</div>
+      <div class="panel-body">
+        <div class="b-section">
+          <div class="b-section-head">Basic Information</div>
+          <div class="b-section-body">
+            <div class="b-field"><div class="b-label">Customer Name</div><div class="b-inp"></div></div>
+            <div class="b-field"><div class="b-label">Customer Type</div><div class="b-inp"></div></div>
+            <div class="b-field"><div class="b-label">Territory</div><div class="b-inp"></div></div>
+            <div class="b-field"><div class="b-label">Customer Group</div><div class="b-inp"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-label after">After</div>
+      <div class="panel-body">
+        <div class="a-section">
+          <div class="a-section-head">Basic Information</div>
+          <div class="a-section-body">
+            <div class="a-field"><div class="a-label">Customer Name</div><div class="a-inp"></div></div>
+            <div class="a-field"><div class="a-label">Customer Type</div><div class="a-inp"></div></div>
+            <div class="a-field"><div class="a-label">Territory</div><div class="a-inp"></div></div>
+            <div class="a-field"><div class="a-label">Customer Group</div><div class="a-inp"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ul class="delta-list" style="margin-top: 10px;">
+    <li><strong>Section head:</strong> accent border-left 3px, background #f9fafb, uppercase + letter-spacing 0.06em</li>
+    <li><strong>Label:</strong> uppercase, letter-spacing 0.05em, color #64748b (lebih kontras)</li>
+    <li><strong>Section body:</strong> padding 16px (dari 12px), gap 12px (dari 8px)</li>
+  </ul>
+</div>
+
+<!-- Section 2: Dialog/Modal -->
+<div class="compare-block">
+  <h3>2. Dialog / Modal <span class="tag">CSS only</span></h3>
+  <div class="split">
+    <div class="panel">
+      <div class="panel-label before">Before</div>
+      <div class="panel-body">
+        <div class="b-dialog">
+          <div class="b-dialog-header">
+            <span>New Customer</span>
+            <span style="font-size:16px; color:#94a3b8; cursor:pointer;">×</span>
+          </div>
+          <div class="b-dialog-body">
+            <div class="b-field"><div class="b-label">Customer Name</div><div class="b-inp"></div></div>
+            <div class="b-field"><div class="b-label">Customer Type</div><div class="b-inp"></div></div>
+          </div>
+          <div class="b-dialog-footer">
+            <button class="b-btn-d">Cancel</button>
+            <button class="b-btn-p">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-label after">After</div>
+      <div class="panel-body">
+        <div class="a-dialog">
+          <div class="a-dialog-header">
+            <div>
+              <div class="a-dialog-title">New Customer</div>
+              <div class="a-dialog-sub">Fill in the details below</div>
+            </div>
+            <button class="a-close">×</button>
+          </div>
+          <div class="a-dialog-body">
+            <div class="a-dfield"><div class="a-dlabel">Customer Name</div><div class="a-dinp"></div></div>
+            <div class="a-dfield"><div class="a-dlabel">Customer Type</div><div class="a-dinp"></div></div>
+          </div>
+          <div class="a-dialog-footer">
+            <button class="a-btn-d">Cancel</button>
+            <button class="a-btn-p">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ul class="delta-list" style="margin-top: 10px;">
+    <li><strong>Dialog header:</strong> background #f9fafb, padding 14px 20px, subtitle kecil, close button rounded</li>
+    <li><strong>Dialog body:</strong> padding 20px, gap 12px antar field</li>
+    <li><strong>Dialog footer:</strong> background #f9fafb, button dengan gradient + box-shadow</li>
+    <li><strong>Border-radius:</strong> 10px (dari 8px), box-shadow lebih dalam</li>
+  </ul>
+</div>
+
+<!-- Approve -->
+<div class="compare-block">
+  <h3>Design ini OK?</h3>
+  <div class="approve-row">
+    <button class="approve-btn" data-choice="approve" onclick="toggleSelect(this)">✓ Approve — lanjut ke implementation plan</button>
+    <button class="approve-btn" data-choice="revise" onclick="toggleSelect(this)">✎ Revisi — ketik perubahan di terminal</button>
+  </div>
+</div>

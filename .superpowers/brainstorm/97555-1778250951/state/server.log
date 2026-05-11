@@ -1,0 +1,5 @@
+{"type":"server-started","port":59033,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:59033","screen_dir":"/Users/erickmo/Desktop/Project/frappe/apps/vernon_desk/.superpowers/brainstorm/97555-1778250951/content","state_dir":"/Users/erickmo/Desktop/Project/frappe/apps/vernon_desk/.superpowers/brainstorm/97555-1778250951/state"}
+{"type":"screen-added","file":"/Users/erickmo/Desktop/Project/frappe/apps/vernon_desk/.superpowers/brainstorm/97555-1778250951/content/approaches.html"}
+{"type":"screen-added","file":"/Users/erickmo/Desktop/Project/frappe/apps/vernon_desk/.superpowers/brainstorm/97555-1778250951/content/approach-a-detail.html"}
+{"type":"screen-added","file":"/Users/erickmo/Desktop/Project/frappe/apps/vernon_desk/.superpowers/brainstorm/97555-1778250951/content/waiting.html"}
+{"type":"server-stopped","reason":"idle timeout"}

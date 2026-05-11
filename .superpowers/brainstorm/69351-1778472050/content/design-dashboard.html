@@ -1,0 +1,144 @@
+<h2>Design Preview — Dashboard</h2>
+<p class="subtitle">Stripe-style light mode. Approve atau minta revisi.</p>
+
+<div class="mockup" style="background:#f6f8fa;font-family:'Inter',sans-serif;border:1px solid #e1e4e8;border-radius:8px;overflow:hidden;">
+
+  <!-- Dashboard header -->
+  <div style="background:#fff;border-bottom:1px solid #e1e4e8;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;">
+    <div>
+      <h3 style="margin:0;font-size:15px;font-weight:700;color:#24292f;">Sales Overview</h3>
+      <p style="margin:2px 0 0;font-size:12px;color:#6e7781;">Last updated 2 min ago</p>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <div style="display:flex;border:1px solid #e1e4e8;border-radius:6px;overflow:hidden;">
+        <button style="font-size:12px;padding:5px 12px;background:#0969da;color:#fff;border:none;cursor:pointer;font-weight:500;">This Month</button>
+        <button style="font-size:12px;padding:5px 12px;background:#fff;color:#6e7781;border:none;border-left:1px solid #e1e4e8;cursor:pointer;">Quarter</button>
+        <button style="font-size:12px;padding:5px 12px;background:#fff;color:#6e7781;border:none;border-left:1px solid #e1e4e8;cursor:pointer;">Year</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:16px;">
+
+    <!-- KPI Cards -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px;">
+
+      <div style="background:#fff;border:1px solid #e1e4e8;border-radius:8px;padding:14px 16px;">
+        <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#6e7781;margin:0 0 6px;">Total Revenue</p>
+        <p style="font-size:22px;font-weight:700;color:#24292f;margin:0;font-variant-numeric:tabular-nums;">Rp 248jt</p>
+        <div style="margin-top:6px;display:flex;align-items:center;gap:4px;">
+          <span style="color:#16a34a;font-size:12px;font-weight:600;">↑ 12.4%</span>
+          <span style="color:#9ca3af;font-size:11px;">vs last month</span>
+        </div>
+      </div>
+
+      <div style="background:#fff;border:1px solid #e1e4e8;border-radius:8px;padding:14px 16px;">
+        <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#6e7781;margin:0 0 6px;">Orders</p>
+        <p style="font-size:22px;font-weight:700;color:#24292f;margin:0;font-variant-numeric:tabular-nums;">142</p>
+        <div style="margin-top:6px;display:flex;align-items:center;gap:4px;">
+          <span style="color:#16a34a;font-size:12px;font-weight:600;">↑ 8.1%</span>
+          <span style="color:#9ca3af;font-size:11px;">vs last month</span>
+        </div>
+      </div>
+
+      <div style="background:#fff;border:1px solid #e1e4e8;border-radius:8px;padding:14px 16px;">
+        <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#6e7781;margin:0 0 6px;">Avg Order Value</p>
+        <p style="font-size:22px;font-weight:700;color:#24292f;margin:0;font-variant-numeric:tabular-nums;">Rp 1.7jt</p>
+        <div style="margin-top:6px;display:flex;align-items:center;gap:4px;">
+          <span style="color:#dc2626;font-size:12px;font-weight:600;">↓ 3.2%</span>
+          <span style="color:#9ca3af;font-size:11px;">vs last month</span>
+        </div>
+      </div>
+
+      <div style="background:#fff;border:1px solid #e1e4e8;border-radius:8px;padding:14px 16px;">
+        <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#6e7781;margin:0 0 6px;">Outstanding</p>
+        <p style="font-size:22px;font-weight:700;color:#24292f;margin:0;font-variant-numeric:tabular-nums;">Rp 84jt</p>
+        <div style="margin-top:6px;display:flex;align-items:center;gap:4px;">
+          <span style="background:#fee2e2;color:#b91c1c;font-size:11px;font-weight:600;padding:1px 6px;border-radius:20px;">12 overdue</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chart + mini table row -->
+    <div style="display:grid;grid-template-columns:1fr 280px;gap:12px;">
+
+      <!-- Chart placeholder -->
+      <div style="background:#fff;border:1px solid #e1e4e8;border-radius:8px;padding:16px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+          <p style="font-size:12px;font-weight:700;color:#24292f;margin:0;">Revenue Trend</p>
+          <span style="font-size:11px;color:#6e7781;">May 2024</span>
+        </div>
+        <!-- Fake bar chart -->
+        <div style="display:flex;align-items:flex-end;gap:6px;height:80px;">
+          <div style="flex:1;background:#dbeafe;border-radius:4px 4px 0 0;height:45%;"></div>
+          <div style="flex:1;background:#dbeafe;border-radius:4px 4px 0 0;height:60%;"></div>
+          <div style="flex:1;background:#dbeafe;border-radius:4px 4px 0 0;height:40%;"></div>
+          <div style="flex:1;background:#dbeafe;border-radius:4px 4px 0 0;height:75%;"></div>
+          <div style="flex:1;background:#dbeafe;border-radius:4px 4px 0 0;height:55%;"></div>
+          <div style="flex:1;background:#dbeafe;border-radius:4px 4px 0 0;height:90%;"></div>
+          <div style="flex:1;background:#0969da;border-radius:4px 4px 0 0;height:100%;"></div>
+        </div>
+        <div style="display:flex;gap:6px;margin-top:4px;">
+          <span style="flex:1;font-size:10px;color:#9ca3af;text-align:center;">W1</span>
+          <span style="flex:1;font-size:10px;color:#9ca3af;text-align:center;">W2</span>
+          <span style="flex:1;font-size:10px;color:#9ca3af;text-align:center;">W3</span>
+          <span style="flex:1;font-size:10px;color:#9ca3af;text-align:center;">W4</span>
+          <span style="flex:1;font-size:10px;color:#9ca3af;text-align:center;">W5</span>
+          <span style="flex:1;font-size:10px;color:#9ca3af;text-align:center;">W6</span>
+          <span style="flex:1;font-size:10px;color:#0969da;text-align:center;font-weight:600;">Now</span>
+        </div>
+      </div>
+
+      <!-- Top items -->
+      <div style="background:#fff;border:1px solid #e1e4e8;border-radius:8px;padding:16px;">
+        <p style="font-size:12px;font-weight:700;color:#24292f;margin:0 0 10px;">Top Customers</p>
+        <div style="display:flex;flex-direction:column;gap:0;">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #f0f0f0;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="width:24px;height:24px;border-radius:50%;background:#dbeafe;color:#0969da;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">M</div>
+              <span style="font-size:12px;color:#24292f;">PT Maju Jaya</span>
+            </div>
+            <span style="font-size:12px;font-weight:600;color:#24292f;font-variant-numeric:tabular-nums;">Rp 48jt</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #f0f0f0;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="width:24px;height:24px;border-radius:50%;background:#dcfce7;color:#15803d;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">S</div>
+              <span style="font-size:12px;color:#24292f;">CV Sukses Selalu</span>
+            </div>
+            <span style="font-size:12px;font-weight:600;color:#24292f;font-variant-numeric:tabular-nums;">Rp 32jt</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="width:24px;height:24px;border-radius:50%;background:#fef9c3;color:#854d0e;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;">N</div>
+              <span style="font-size:12px;color:#24292f;">PT Nusa Indah</span>
+            </div>
+            <span style="font-size:12px;font-weight:600;color:#24292f;font-variant-numeric:tabular-nums;">Rp 27jt</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:20px;">
+  <h3>Yang berubah dari Frappe default:</h3>
+  <ul style="font-size:14px;color:#444;line-height:1.8;">
+    <li><strong>KPI cards</strong> — metric besar, label uppercase muted, trend arrow + delta % berwarna</li>
+    <li><strong>Period switcher</strong> — pill group di header (This Month / Quarter / Year)</li>
+    <li><strong>Chart container</strong> — border clean, title + timestamp, no excess padding</li>
+    <li><strong>Chart bar</strong> — warna konsisten biru, bar aktif lebih solid</li>
+    <li><strong>Mini leaderboard</strong> — avatar inisial berwarna + angka tabular</li>
+    <li><strong>Overdue badge</strong> — pill merah di KPI card outstanding</li>
+  </ul>
+</div>
+
+<div class="options" style="margin-top:8px;">
+  <div class="option" data-choice="approve-dashboard" onclick="toggleSelect(this)">
+    <div class="letter">✓</div>
+    <div class="content"><h3>Approve — tulis design doc</h3></div>
+  </div>
+  <div class="option" data-choice="revise-dashboard" onclick="toggleSelect(this)">
+    <div class="letter">✗</div>
+    <div class="content"><h3>Revisi — tulis feedback di terminal</h3></div>
+  </div>
+</div>

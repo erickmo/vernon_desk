@@ -80,7 +80,7 @@ vernon_desk = {
     apply_theme() {
         const theme =
             (frappe.boot.vernon_desk && frappe.boot.vernon_desk.theme) ||
-            "cosmic_ocean";
+            "vernon_desk1";
         document.documentElement.setAttribute("data-vd-theme", theme);
     },
 

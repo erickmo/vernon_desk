@@ -27,7 +27,7 @@
 }
 
 /* ── Theme: Cosmic Ocean ───────────────────────────────────── */
-[data-vd-theme="cosmic_ocean"] {
+[data-vd-theme="vernon_desk1"] {
     --vd-grad:         linear-gradient(140deg, #0d0b1e 0%, #1e1b4b 50%, #0f0c29 100%);
     --vd-nav-bg:       rgba(13, 11, 30, 0.82);
     --vd-nav-solid:    #ffffff;

@@ -1,0 +1,72 @@
+<h2>3 Pendekatan Token System</h2>
+<p class="subtitle">Base 13px tetap. Pilih struktur token yang paling pas untuk dashboard ERP.</p>
+
+<div class="options" style="margin-top:20px;">
+
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Strict Tailwind — 6 tokens</h3>
+      <p style="margin-bottom:10px;">xs · sm · base · lg · xl · 2xl — persis rasio Tailwind UI</p>
+      <div style="font-family:monospace;font-size:12px;background:rgba(0,0,0,0.3);padding:12px;border-radius:6px;line-height:1.8;">
+        <span style="color:#94a3b8;">--fs-xs  :</span> <span style="color:#34d399;">0.75rem</span>  <span style="color:#475569;">→ 9.75px  (badges, timestamps)</span><br>
+        <span style="color:#94a3b8;">--fs-sm  :</span> <span style="color:#34d399;">0.875rem</span> <span style="color:#475569;">→ 11.4px  (table headers, nav)</span><br>
+        <span style="color:#94a3b8;">--fs-base:</span> <span style="color:#34d399;">1rem</span>     <span style="color:#475569;">→ 13px   (body, table rows)</span><br>
+        <span style="color:#94a3b8;">--fs-lg  :</span> <span style="color:#34d399;">1.125rem</span> <span style="color:#475569;">→ 14.6px  (section titles)</span><br>
+        <span style="color:#94a3b8;">--fs-xl  :</span> <span style="color:#34d399;">1.25rem</span>  <span style="color:#475569;">→ 16.25px (page titles)</span><br>
+        <span style="color:#94a3b8;">--fs-2xl :</span> <span style="color:#34d399;">1.5rem</span>   <span style="color:#475569;">→ 19.5px  (KPI numbers)</span>
+      </div>
+      <div style="margin-top:10px;font-size:12px;color:#64748b;">
+        ✓ Standard, predictable<br>
+        ✗ Tidak ada step di bawah xs — badge label ERP sering butuh 9px ke bawah
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)" style="border-color:rgba(99,102,241,0.5);">
+    <div class="letter" style="background:#6366f1;">B</div>
+    <div class="content">
+      <h3>Extended Tailwind — 7 tokens <span style="font-size:11px;color:#6366f1;font-weight:600;">RECOMMENDED</span></h3>
+      <p style="margin-bottom:10px;">2xs · xs · sm · base · lg · xl · 2xl — tambah 2xs untuk elemen ERP yang sangat dense</p>
+      <div style="font-family:monospace;font-size:12px;background:rgba(0,0,0,0.3);padding:12px;border-radius:6px;line-height:1.8;">
+        <span style="color:#94a3b8;">--fs-2xs :</span> <span style="color:#a78bfa;">0.6875rem</span><span style="color:#475569;">→ 8.9px  (badge status, tiny tag)</span><br>
+        <span style="color:#94a3b8;">--fs-xs  :</span> <span style="color:#34d399;">0.75rem</span>   <span style="color:#475569;">→ 9.75px (timestamps, breadcrumb)</span><br>
+        <span style="color:#94a3b8;">--fs-sm  :</span> <span style="color:#34d399;">0.875rem</span>  <span style="color:#475569;">→ 11.4px (table header, nav item)</span><br>
+        <span style="color:#94a3b8;">--fs-base:</span> <span style="color:#34d399;">1rem</span>      <span style="color:#475569;">→ 13px   (body, table row)</span><br>
+        <span style="color:#94a3b8;">--fs-lg  :</span> <span style="color:#34d399;">1.125rem</span>  <span style="color:#475569;">→ 14.6px (section title)</span><br>
+        <span style="color:#94a3b8;">--fs-xl  :</span> <span style="color:#34d399;">1.25rem</span>   <span style="color:#475569;">→ 16.25px (page title)</span><br>
+        <span style="color:#94a3b8;">--fs-2xl :</span> <span style="color:#34d399;">1.5rem</span>    <span style="color:#475569;">→ 19.5px (KPI number)</span>
+      </div>
+      <div style="margin-top:10px;font-size:12px;color:#64748b;">
+        ✓ Cover semua use-case ERP termasuk badge micro-text<br>
+        ✓ Mapping 1:1 ke semua current font-sizes<br>
+        ✗ Satu token lebih dari standard Tailwind
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Simplified — 5 tokens</h3>
+      <p style="margin-bottom:10px;">xs · sm · base · lg · xl — hapus extreme sizes, scale paling simple</p>
+      <div style="font-family:monospace;font-size:12px;background:rgba(0,0,0,0.3);padding:12px;border-radius:6px;line-height:1.8;">
+        <span style="color:#94a3b8;">--fs-xs  :</span> <span style="color:#34d399;">0.6875rem</span><span style="color:#475569;">→ 8.9px  (badges, tiny)</span><br>
+        <span style="color:#94a3b8;">--fs-sm  :</span> <span style="color:#34d399;">0.8125rem</span><span style="color:#475569;">→ 10.6px (secondary)</span><br>
+        <span style="color:#94a3b8;">--fs-base:</span> <span style="color:#34d399;">1rem</span>      <span style="color:#475569;">→ 13px   (body)</span><br>
+        <span style="color:#94a3b8;">--fs-lg  :</span> <span style="color:#34d399;">1.125rem</span>  <span style="color:#475569;">→ 14.6px (section)</span><br>
+        <span style="color:#94a3b8;">--fs-xl  :</span> <span style="color:#34d399;">1.375rem</span>  <span style="color:#475569;">→ 17.9px (page title)</span>
+      </div>
+      <div style="margin-top:10px;font-size:12px;color:#64748b;">
+        ✓ Paling simple, paling mudah diingat<br>
+        ✗ KPI numbers tidak punya token besar — harus hardcode<br>
+        ✗ Gap sm→base terlalu besar, kehilangan nuansa hierarchy
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div style="margin-top:20px;padding:14px 16px;background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.2);border-radius:8px;font-size:13px;">
+  <strong style="color:#a5b4fc;">Rekomendasi: B</strong> — ERP dashboard butuh micro-text untuk status badge (contoh: 8-9px "Submitted", "Draft"). Tanpa <code>--fs-2xs</code>, badge terpaksa hardcode. Semua current values (0.65–0.85rem) punya home yang clean di scale ini.
+</div>

@@ -8,8 +8,8 @@
       "fieldname": "theme",
       "fieldtype": "Select",
       "label": "Theme",
-      "options": "cosmic_ocean\naurora_borealis\nsunset_dusk\nmidnight_sapphire\nlight_stripe",
-      "default": "cosmic_ocean",
+      "options": "vernon_desk1\naurora_borealis\nsunset_dusk\nmidnight_sapphire\nlight_stripe",
+      "default": "vernon_desk1",
       "reqd": 1
     }
   ],
