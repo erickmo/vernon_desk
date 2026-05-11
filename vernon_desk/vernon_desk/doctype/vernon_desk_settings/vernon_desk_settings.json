@@ -8,7 +8,7 @@
       "fieldname": "theme",
       "fieldtype": "Select",
       "label": "Theme",
-      "options": "cosmic_ocean\naurora_borealis\nsunset_dusk\nmidnight_sapphire",
+      "options": "cosmic_ocean\naurora_borealis\nsunset_dusk\nmidnight_sapphire\nlight_stripe",
       "default": "cosmic_ocean",
       "reqd": 1
     }
