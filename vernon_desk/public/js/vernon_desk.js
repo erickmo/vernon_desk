@@ -225,6 +225,7 @@ vernon_desk = {
             const route = frappe.get_route();
             this.render_nav2(route);
             this._update_nm_active(route);
+            this.initListEnhancements();
         });
         const r = frappe.get_route();
         this.render_nav2(r);
@@ -288,6 +289,85 @@ vernon_desk = {
             .split("-")
             .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
             .join(" ");
+    },
+
+    /* ── List view enhancements ────────────────────────────────── */
+    initListEnhancements() {
+        const route = frappe.get_route();
+        if (!route || route[0] !== "List") return;
+        setTimeout(() => {
+            this._inject_empty_state();
+            this._bind_bulk_bar();
+        }, 300);
+    },
+
+    _inject_empty_state() {
+        const noResult = document.querySelector(".no-result");
+        if (!noResult || document.getElementById("vd-empty-state")) return;
+        if (document.querySelectorAll(".list-row").length > 0) return;
+
+        while (noResult.firstChild) noResult.removeChild(noResult.firstChild);
+
+        const wrap = vd_el("div", { id: "vd-empty-state" });
+        wrap.style.cssText = [
+            "display:flex", "flex-direction:column", "align-items:center",
+            "justify-content:center", "padding:60px 20px", "text-align:center",
+        ].join(";");
+
+        const icon = vd_el("div", {}, "📭");
+        icon.style.cssText = "font-size:40px;margin-bottom:12px;";
+
+        const heading = vd_el("p", {});
+        heading.style.cssText = "font-size:15px;font-weight:600;color:#24292f;margin:0 0 6px;";
+        heading.textContent = "No records found";
+
+        const sub = vd_el("p", {});
+        sub.style.cssText = "font-size:13px;color:#6e7781;margin:0 0 16px;";
+        sub.textContent = "Try adjusting your filters or create a new record.";
+
+        wrap.appendChild(icon);
+        wrap.appendChild(heading);
+        wrap.appendChild(sub);
+        noResult.appendChild(wrap);
+    },
+
+    _bind_bulk_bar() {
+        if (document.getElementById("vd-bulk-bar")) return;
+
+        const bar = vd_el("div", { id: "vd-bulk-bar" });
+        bar.style.cssText = [
+            "display:none", "align-items:center", "gap:12px",
+            "padding:8px 16px", "background:#0969da", "color:#fff",
+            "font-family:var(--vd-font)", "font-size:13px",
+            "position:sticky", "top:var(--vd-total-nav)", "z-index:20",
+        ].join(";");
+
+        const count = vd_el("span", { id: "vd-bulk-count" }, "0 selected");
+        bar.appendChild(count);
+
+        const clear = vd_el("button", {}, "Clear");
+        clear.style.cssText = "background:rgba(255,255,255,.2);border:none;color:#fff;border-radius:4px;padding:3px 10px;cursor:pointer;font-size:12px;";
+        clear.onclick = () => {
+            document.querySelectorAll(".list-row input[type='checkbox']:checked")
+                .forEach(cb => cb.click());
+        };
+        bar.appendChild(clear);
+
+        const pageContent = document.querySelector(".page-content");
+        if (pageContent) pageContent.prepend(bar);
+
+        document.addEventListener("change", (e) => {
+            if (!e.target.matches(".list-row input[type='checkbox']")) return;
+            const checked = document.querySelectorAll(
+                ".list-row input[type='checkbox']:checked"
+            ).length;
+            if (checked > 0) {
+                bar.style.display = "flex";
+                document.getElementById("vd-bulk-count").textContent = `${checked} selected`;
+            } else {
+                bar.style.display = "none";
+            }
+        });
     },
 };
 
