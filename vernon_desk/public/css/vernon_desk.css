@@ -81,6 +81,50 @@
     --vd-logo-color:  #1d4ed8;
 }
 
+/* ── Theme: Light Stripe ───────────────────────────────────── */
+[data-vd-theme="light_stripe"] {
+    --vd-grad:          #f6f8fa;
+    --vd-nav-bg:        rgba(255, 255, 255, 0.95);
+    --vd-nav-solid:     #24292f;
+    --vd-navmain-bg:    #ffffff;
+    --vd-navmain-solid: #24292f;
+    --vd-nav2-solid:    #57606a;
+    --vd-orb1:          transparent;
+    --vd-orb2:          transparent;
+    --vd-accent:        #0969da;
+    --vd-accent2:       #1d4ed8;
+    --vd-tint:          rgba(9, 105, 218, 0.06);
+    --vd-logo-color:    #0969da;
+    --vd-border:        #e1e4e8;
+    --vd-text:          #24292f;
+    --vd-text-muted:    #6e7781;
+    --vd-card-bg:       #ffffff;
+    --vd-page-bg:       #f6f8fa;
+}
+
+/* Base overrides — light mode only */
+[data-vd-theme="light_stripe"] body {
+    background: var(--vd-page-bg) !important;
+    color: var(--vd-text) !important;
+}
+[data-vd-theme="light_stripe"] .layout-main-section,
+[data-vd-theme="light_stripe"] .page-content {
+    background: transparent !important;
+}
+[data-vd-theme="light_stripe"] .vd-orb { display: none !important; }
+[data-vd-theme="light_stripe"] .navbar {
+    border-bottom: 1px solid var(--vd-border) !important;
+    box-shadow: none !important;
+}
+[data-vd-theme="light_stripe"] #vd-nav-main {
+    border-bottom: 1px solid var(--vd-border) !important;
+    box-shadow: none !important;
+}
+[data-vd-theme="light_stripe"] #vd-nav2 {
+    border-bottom: 1px solid var(--vd-border) !important;
+    background: #ffffff !important;
+}
+
 /* ── Sidebar: gone ─────────────────────────────────────────── */
 .layout-side-section      { display: none !important; }
 .layout-main-section-wrap { margin-left: 0 !important; padding-left: 0 !important; }
