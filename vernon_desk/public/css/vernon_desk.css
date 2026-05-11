@@ -972,3 +972,81 @@ div[card_name] {
     border: none !important;
     padding: 0 !important;
 }
+
+/* ── Light stripe: List view ───────────────────────────────── */
+[data-vd-theme="light_stripe"] .list-row-container,
+[data-vd-theme="light_stripe"] .result-list .list-row {
+    background: #ffffff !important;
+    border-bottom: 1px solid #e1e4e8 !important;
+}
+[data-vd-theme="light_stripe"] .list-row:hover,
+[data-vd-theme="light_stripe"] .list-row-container:hover .list-row {
+    background: #f0f6ff !important;
+    border-left: 3px solid #0969da !important;
+}
+[data-vd-theme="light_stripe"] .list-header {
+    background: #f6f8fa !important;
+    border-bottom: 1px solid #e1e4e8 !important;
+    position: sticky !important;
+    top: var(--vd-total-nav) !important;
+    z-index: 10 !important;
+}
+[data-vd-theme="light_stripe"] .list-header .list-col,
+[data-vd-theme="light_stripe"] .list-header .column-header {
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: .06em !important;
+    color: #6e7781 !important;
+}
+[data-vd-theme="light_stripe"] .list-row input[type="checkbox"],
+[data-vd-theme="light_stripe"] .list-header input[type="checkbox"] {
+    accent-color: #0969da !important;
+}
+[data-vd-theme="light_stripe"] .list-row .list-subject-field a,
+[data-vd-theme="light_stripe"] .list-row .list-row-col .bold {
+    color: #0969da !important;
+    font-weight: 500 !important;
+}
+[data-vd-theme="light_stripe"] .indicator-pill.blue,
+[data-vd-theme="light_stripe"] .indicator-pill[data-status="Open"] {
+    background: #dbeafe !important; color: #1d4ed8 !important;
+    border: none !important;
+}
+[data-vd-theme="light_stripe"] .indicator-pill.green,
+[data-vd-theme="light_stripe"] .indicator-pill[data-status="Submitted"] {
+    background: #dcfce7 !important; color: #15803d !important;
+    border: none !important;
+}
+[data-vd-theme="light_stripe"] .indicator-pill.yellow,
+[data-vd-theme="light_stripe"] .indicator-pill[data-status="Draft"] {
+    background: #fef9c3 !important; color: #854d0e !important;
+    border: none !important;
+}
+[data-vd-theme="light_stripe"] .indicator-pill.red,
+[data-vd-theme="light_stripe"] .indicator-pill[data-status="Cancelled"] {
+    background: #fee2e2 !important; color: #b91c1c !important;
+    border: none !important;
+}
+[data-vd-theme="light_stripe"] .list-pager {
+    background: #ffffff !important;
+    border-top: 1px solid #e1e4e8 !important;
+    padding: 8px 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
+[data-vd-theme="light_stripe"] .list-pager .btn-pager {
+    font-size: 12px !important;
+    border: 1px solid #e1e4e8 !important;
+    border-radius: 6px !important;
+    background: #ffffff !important;
+    color: #24292f !important;
+    padding: 4px 10px !important;
+}
+[data-vd-theme="light_stripe"] .list-pager .btn-pager.active,
+[data-vd-theme="light_stripe"] .list-pager .btn-pager:focus {
+    background: #0969da !important;
+    color: #ffffff !important;
+    border-color: #0969da !important;
+}
