@@ -1142,3 +1142,68 @@ div[card_name] {
     color: #24292f !important;
     border-radius: 6px !important;
 }
+
+/* ── Light stripe: Dashboard ───────────────────────────────── */
+[data-vd-theme="light_stripe"] .widget.number-widget-box,
+[data-vd-theme="light_stripe"] .number-widget-box {
+    background: #ffffff !important;
+    border: 1px solid #e1e4e8 !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+}
+[data-vd-theme="light_stripe"] .number-widget-box .widget-head .widget-title {
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: .07em !important;
+    color: #6e7781 !important;
+}
+[data-vd-theme="light_stripe"] .number-widget-box .widget-body .number {
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    color: #24292f !important;
+    font-variant-numeric: tabular-nums !important;
+}
+[data-vd-theme="light_stripe"] .dashboard-chart-wrapper,
+[data-vd-theme="light_stripe"] .widget.chart-widget {
+    background: #ffffff !important;
+    border: 1px solid #e1e4e8 !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+}
+[data-vd-theme="light_stripe"] .dashboard-chart-wrapper .chart-container {
+    padding: 16px !important;
+}
+[data-vd-theme="light_stripe"] .widget.chart-widget .widget-head {
+    border-bottom: 1px solid #f0f0f0 !important;
+    padding: 10px 16px !important;
+    background: #ffffff !important;
+}
+[data-vd-theme="light_stripe"] .widget.chart-widget .widget-head .widget-title {
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    color: #24292f !important;
+    text-transform: none !important;
+}
+[data-vd-theme="light_stripe"] .frappe-chart .bar path {
+    fill: #dbeafe !important;
+}
+[data-vd-theme="light_stripe"] .frappe-chart .bar path:last-child {
+    fill: #0969da !important;
+}
+[data-vd-theme="light_stripe"] .widget.links-widget-box {
+    background: #ffffff !important;
+    border: 1px solid #e1e4e8 !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+}
+[data-vd-theme="light_stripe"] .widget.links-widget-box .widget-head {
+    border-bottom: 1px solid #f0f0f0 !important;
+    background: #ffffff !important;
+}
+[data-vd-theme="light_stripe"] div[card_name] {
+    background: #ffffff !important;
+    border: 1px solid #e1e4e8 !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+}
