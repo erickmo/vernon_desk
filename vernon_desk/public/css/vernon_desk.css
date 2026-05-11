@@ -832,6 +832,10 @@ div[card_name] {
 /* ── Widget body / links widget ───────────────────────────── */
 .widget.links-widget-box {
     padding: 0 !important;
+    box-shadow: none !important;
+}
+.widget.links-widget-box .widget-title {
+    font-size: var(--fs-sm) !important;
 }
 .widget-body {
     margin: 12px 16px !important;
@@ -844,6 +848,7 @@ div[card_name] {
 .widget-body a:hover {
     background: rgba(0,0,0,0.04) !important;
     color: var(--vd-accent, #6b5b95) !important;
+    font-weight: 600 !important;
 }
 
 /* ── Widget head: section-head style ──────────────────────── */
