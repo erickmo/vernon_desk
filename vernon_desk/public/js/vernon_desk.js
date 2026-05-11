@@ -226,6 +226,7 @@ vernon_desk = {
             this.render_nav2(route);
             this._update_nm_active(route);
             this.initListEnhancements();
+            this.initFormEnhancements();
         });
         const r = frappe.get_route();
         this.render_nav2(r);
@@ -367,6 +368,86 @@ vernon_desk = {
             } else {
                 bar.style.display = "none";
             }
+        });
+    },
+
+    /* ── Form view enhancements ────────────────────────────────── */
+    initFormEnhancements() {
+        const route = frappe.get_route();
+        if (!route || route[0] !== "Form") return;
+        setTimeout(() => {
+            this._inject_mandatory_asterisks();
+            this._inject_sticky_save_bar();
+        }, 400);
+    },
+
+    _inject_mandatory_asterisks() {
+        if (!window.cur_frm || !cur_frm.fields_dict) return;
+        Object.values(cur_frm.fields_dict).forEach(field => {
+            if (!field.df || !field.df.reqd) return;
+            const label = field.wrapper && field.wrapper.querySelector("label.control-label");
+            if (!label || label.querySelector(".vd-req")) return;
+            const asterisk = vd_el("span", { class: "vd-req" }, " *");
+            asterisk.style.color = "#cf222e";
+            label.appendChild(asterisk);
+        });
+    },
+
+    _inject_sticky_save_bar() {
+        if (document.getElementById("vd-save-bar")) return;
+
+        const bar = vd_el("div", { id: "vd-save-bar" });
+        bar.style.cssText = [
+            "display:none", "position:fixed", "bottom:0", "left:0", "right:0",
+            "background:#fff", "border-top:1px solid #e1e4e8",
+            "padding:10px 24px", "z-index:1050",
+            "align-items:center", "justify-content:space-between",
+            "font-family:var(--vd-font)",
+        ].join(";");
+
+        const msg = vd_el("span", {}, "Unsaved changes");
+        msg.style.cssText = "font-size:12px;color:#6e7781;";
+
+        const btnWrap = vd_el("div", {});
+        btnWrap.style.cssText = "display:flex;gap:8px;";
+
+        const discardBtn = vd_el("button", {}, "Discard");
+        discardBtn.style.cssText = [
+            "font-size:13px", "background:#fff", "color:#6e7781",
+            "border:1px solid #d0d7de", "border-radius:6px",
+            "padding:6px 14px", "cursor:pointer",
+        ].join(";");
+        discardBtn.onclick = () => {
+            if (window.cur_frm) cur_frm.discard_changes();
+        };
+
+        const saveBtn = vd_el("button", {}, "Save");
+        saveBtn.style.cssText = [
+            "font-size:13px", "background:#0969da", "color:#fff",
+            "border:none", "border-radius:6px",
+            "padding:6px 14px", "cursor:pointer", "font-weight:500",
+        ].join(";");
+        saveBtn.onclick = () => {
+            if (window.cur_frm) cur_frm.save();
+        };
+
+        btnWrap.appendChild(discardBtn);
+        btnWrap.appendChild(saveBtn);
+        bar.appendChild(msg);
+        bar.appendChild(btnWrap);
+        document.body.appendChild(bar);
+
+        this._save_bar_interval = setInterval(() => {
+            if (window.cur_frm && cur_frm.is_dirty()) {
+                bar.style.display = "flex";
+            } else {
+                bar.style.display = "none";
+            }
+        }, 500);
+
+        $(document).one("page-change", () => {
+            clearInterval(this._save_bar_interval);
+            bar.remove();
         });
     },
 };
