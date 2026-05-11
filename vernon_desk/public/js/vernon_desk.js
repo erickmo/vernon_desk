@@ -64,6 +64,7 @@ function vd_chevron_svg(cls) {
 /* ── Main object ────────────────────────────────────────────── */
 vernon_desk = {
     _nav2_bound: false,
+    _bulk_bar_bound: false,
     _nm_open: null,
 
     init() {
@@ -81,6 +82,10 @@ vernon_desk = {
             (frappe.boot.vernon_desk && frappe.boot.vernon_desk.theme) ||
             "cosmic_ocean";
         document.documentElement.setAttribute("data-vd-theme", theme);
+    },
+
+    _is_light_stripe() {
+        return document.documentElement.getAttribute("data-vd-theme") === "light_stripe";
     },
 
     /* ── Nav1 ──────────────────────────────────────────────── */
@@ -294,6 +299,7 @@ vernon_desk = {
 
     /* ── List view enhancements ────────────────────────────────── */
     initListEnhancements() {
+        if (!this._is_light_stripe()) return;
         const route = frappe.get_route();
         if (!route || route[0] !== "List") return;
         setTimeout(() => {
@@ -333,7 +339,8 @@ vernon_desk = {
     },
 
     _bind_bulk_bar() {
-        if (document.getElementById("vd-bulk-bar")) return;
+        const existing = document.getElementById("vd-bulk-bar");
+        if (existing) existing.remove();
 
         const bar = vd_el("div", { id: "vd-bulk-bar" });
         bar.style.cssText = [
@@ -357,22 +364,25 @@ vernon_desk = {
         const pageContent = document.querySelector(".page-content");
         if (pageContent) pageContent.prepend(bar);
 
-        document.addEventListener("change", (e) => {
-            if (!e.target.matches(".list-row input[type='checkbox']")) return;
-            const checked = document.querySelectorAll(
-                ".list-row input[type='checkbox']:checked"
-            ).length;
-            if (checked > 0) {
-                bar.style.display = "flex";
-                document.getElementById("vd-bulk-count").textContent = `${checked} selected`;
-            } else {
-                bar.style.display = "none";
-            }
-        });
+        if (!this._bulk_bar_bound) {
+            this._bulk_bar_bound = true;
+            document.addEventListener("change", (e) => {
+                if (!e.target.matches(".list-row input[type='checkbox']")) return;
+                const b = document.getElementById("vd-bulk-bar");
+                if (!b) return;
+                const checked = document.querySelectorAll(
+                    ".list-row input[type='checkbox']:checked"
+                ).length;
+                b.style.display = checked > 0 ? "flex" : "none";
+                const countEl = document.getElementById("vd-bulk-count");
+                if (countEl) countEl.textContent = `${checked} selected`;
+            });
+        }
     },
 
     /* ── Form view enhancements ────────────────────────────────── */
     initFormEnhancements() {
+        if (!this._is_light_stripe()) return;
         const route = frappe.get_route();
         if (!route || route[0] !== "Form") return;
         setTimeout(() => {

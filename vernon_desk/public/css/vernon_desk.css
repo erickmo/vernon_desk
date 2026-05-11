@@ -978,6 +978,7 @@ div[card_name] {
 [data-vd-theme="light_stripe"] .result-list .list-row {
     background: #ffffff !important;
     border-bottom: 1px solid #e1e4e8 !important;
+    border-left: 3px solid transparent !important;
 }
 [data-vd-theme="light_stripe"] .list-row:hover,
 [data-vd-theme="light_stripe"] .list-row-container:hover .list-row {
