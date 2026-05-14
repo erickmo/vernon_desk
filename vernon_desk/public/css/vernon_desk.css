@@ -1266,3 +1266,13 @@ div[card_name] {
     border-radius: 8px !important;
     box-shadow: none !important;
 }
+
+/* ── Workspace footer ──────────────────────────────────────── */
+.workspace-footer {
+    padding: 10px 20px !important;
+}
+
+/* ── Codex editor redactor ─────────────────────────────────── */
+.codex-editor__redactor {
+    margin-left: 0 !important;
+}
