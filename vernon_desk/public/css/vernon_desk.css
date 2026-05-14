@@ -83,7 +83,7 @@
 
 /* ── Theme: Light Stripe ───────────────────────────────────── */
 [data-vd-theme="light_stripe"] {
-    --vd-grad:          #f6f8fa;
+    --vd-grad:          #ffffff;
     --vd-nav-bg:        rgba(255, 255, 255, 0.95);
     --vd-nav-solid:     #24292f;
     --vd-navmain-bg:    #ffffff;
@@ -99,7 +99,7 @@
     --vd-text:          #24292f;
     --vd-text-muted:    #6e7781;
     --vd-card-bg:       #ffffff;
-    --vd-page-bg:       #f6f8fa;
+    --vd-page-bg:       #ffffff;
 }
 
 /* Base overrides — light mode only */
@@ -138,12 +138,15 @@
     padding-left: 24px !important;
     padding-right: 24px !important;
 }
+.layout-main-section-wrapper {
+    padding-top: 0 !important;
+}
 .layout-main-section-wrap,
 .layout-main-section {
     width: 100% !important;
     max-width: 100% !important;
 }
-.layout-main-section { margin-top: 15px !important; padding: 0 !important; }
+.layout-main-section { margin-top: 15px !important; padding: 0px !important; padding-top: 0px !important; padding-bottom: 0px !important; padding-left: 0px !important; padding-right: 0px !important; }
 .ce-block__content { padding: 0 !important; }
 
 /* ── Sticky wrapper ────────────────────────────────────────── */
@@ -161,9 +164,7 @@ html { font-size: 13px; }
 
 body {
     font-family: var(--vd-font) !important;
-    background: var(--vd-grad,
-        linear-gradient(140deg, #0d0b1e 0%, #1e1b4b 50%, #0f0c29 100%)
-    ) !important;
+    background: var(--vd-grad, #ffffff) !important;
     min-height: 100vh;
 }
 
@@ -246,6 +247,69 @@ body::after {
     color: #fff;
     box-shadow: 0 2px 10px rgba(0,0,0,0.15); flex-shrink: 0;
     transition: background 0.4s var(--vd-ease);
+}
+
+/* ── Navbar breadcrumbs ────────────────────────────────────── */
+/* Default: dark navbar (aurora_borealis, sunset_dusk, midnight_sapphire, no theme) */
+#navbar-breadcrumbs {
+    padding-left: 12px !important;
+    margin-left: 12px !important;
+    border-left: 1px solid rgba(255,255,255,0.18) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0 !important;
+}
+#navbar-breadcrumbs > li {
+    display: flex !important;
+    align-items: center !important;
+}
+#navbar-breadcrumbs > li > a {
+    font-family: var(--vd-font) !important;
+    font-size: var(--fs-xs) !important;
+    font-weight: 400 !important;
+    color: rgba(255,255,255,0.55) !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+    margin-right: 0 !important;
+    padding: 2px 4px !important;
+    border-radius: 4px !important;
+    transition: color 0.12s var(--vd-ease), background 0.12s var(--vd-ease) !important;
+}
+#navbar-breadcrumbs > li > a::before {
+    display: inline-block !important;
+    margin-right: 5px !important;
+    vertical-align: middle !important;
+    opacity: 0.45 !important;
+    filter: brightness(10) !important;
+}
+#navbar-breadcrumbs > li > a:hover {
+    color: rgba(255,255,255,0.90) !important;
+    background: rgba(255,255,255,0.08) !important;
+    text-decoration: none !important;
+}
+#navbar-breadcrumbs > li.disabled > a {
+    color: rgba(255,255,255,0.80) !important;
+    font-weight: 500 !important;
+    pointer-events: none !important;
+    background: none !important;
+}
+/* vernon_desk1: white navbar — use dark text */
+[data-vd-theme="vernon_desk1"] #navbar-breadcrumbs {
+    border-left-color: rgba(0,0,0,0.12) !important;
+}
+[data-vd-theme="vernon_desk1"] #navbar-breadcrumbs > li > a {
+    color: rgba(0,0,0,0.45) !important;
+}
+[data-vd-theme="vernon_desk1"] #navbar-breadcrumbs > li > a::before {
+    filter: none !important;
+    opacity: 0.30 !important;
+}
+[data-vd-theme="vernon_desk1"] #navbar-breadcrumbs > li > a:hover {
+    color: rgba(0,0,0,0.80) !important;
+    background: rgba(0,0,0,0.05) !important;
+}
+[data-vd-theme="vernon_desk1"] #navbar-breadcrumbs > li.disabled > a {
+    color: rgba(0,0,0,0.70) !important;
 }
 
 /* ── Nav-main: module bar ──────────────────────────────────── */
@@ -396,7 +460,7 @@ body::after {
 
 /* ── Page body ─────────────────────────────────────────────── */
 .page-body {
-    background: #f4f6f9 !important;
+    background: #ffffff !important;
     min-height: calc(100vh - var(--vd-total-nav)) !important;
     padding-bottom: 24px !important;
     position: relative !important;
@@ -472,9 +536,6 @@ body::after {
 .vd-nm-dropdown, .vd-nm-dropdown * {
     border-radius: 0 !important;
 }
-/* Restore toggle pill shape */
-.page-body input[type="checkbox"] { border-radius: 9px !important; }
-.page-body input[type="checkbox"]::after { border-radius: 50% !important; }
 
 /* ── Cards ─────────────────────────────────────────────────── */
 .frappe-card,
@@ -494,20 +555,23 @@ body::after {
     margin-bottom: 0 !important;
 }
 
-/* ── Section head: accent stripe ──────────────────────────── */
+/* ── Section head: warm tint ───────────────────────────────── */
 .form-section .section-head {
     border-left: 3px solid var(--vd-accent, #6b5b95) !important;
-    background: #f9fafb !important;
+    background: #faf8ff !important;
     padding: 10px 16px !important;
-    border-bottom: 1px solid #eef1f6 !important;
+    border-bottom: 1px solid #ede9f8 !important;
     margin-bottom: 0 !important;
+    display: flex !important;
+    align-items: baseline !important;
+    gap: 8px !important;
 }
 .form-section .section-head .section-title {
-    font-size: var(--fs-xs) !important;
+    font-size: 11px !important;
     font-weight: 700 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.06em !important;
-    color: #374151 !important;
+    text-transform: none !important;
+    letter-spacing: -0.01em !important;
+    color: #2d1f6e !important;
     line-height: var(--lh-tight) !important;
 }
 
@@ -722,6 +786,8 @@ a.dropdown-item,
 }
 
 /* ── Modal / Dialog ────────────────────────────────────────── */
+.modal         { z-index: 9999 !important; }
+.modal-backdrop { z-index: 9998 !important; }
 .modal-content {
     font-family: var(--vd-font) !important;
     border-radius: 12px !important;
@@ -777,52 +843,8 @@ a.dropdown-item,
     border-top: 1px solid #eef1f6 !important;
 }
 
-/* ── Checkbox → Toggle ─────────────────────────────────────── */
-.page-body input[type="checkbox"] {
-    -webkit-appearance: none !important;
-    appearance: none !important;
-    width: 32px !important;
-    height: 18px !important;
-    min-width: 32px !important;
-    border-radius: 9px !important;
-    background: #cbd5e1 !important;
-    border: none !important;
-    cursor: pointer !important;
-    position: relative !important;
-    vertical-align: middle !important;
-    transition: background 0.18s var(--vd-ease) !important;
-    flex-shrink: 0 !important;
-    outline: none !important;
-    box-shadow: none !important;
-}
-.page-body input[type="checkbox"]::after {
-    content: '' !important;
-    position: absolute !important;
-    width: 14px !important;
-    height: 14px !important;
-    border-radius: 50% !important;
-    background: #fff !important;
-    top: 2px !important;
-    left: 2px !important;
-    transition: left 0.18s var(--vd-ease) !important;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.18) !important;
-}
-.page-body input[type="checkbox"]:checked {
-    background: var(--vd-accent, #6b5b95) !important;
-}
-.page-body input[type="checkbox"]:checked::after {
-    left: 16px !important;
-}
-.page-body input[type="checkbox"]:focus {
-    box-shadow: 0 0 0 3px rgba(107, 91, 149, 0.18) !important;
-}
-.page-body .checkbox label,
-.page-body .frappe-control[data-fieldtype="Check"] label {
-    display: flex !important;
-    align-items: center !important;
-    gap: 8px !important;
-    cursor: pointer !important;
-}
+/* ── Checkbox: default Frappe style ───────────────────────── */
+/* Restore pill shape already handled above (lines 478-480) */
 
 /* ── Unit checkbox font ────────────────────────────────────── */
 .unit-checkbox,
@@ -876,6 +898,18 @@ div[card_name] {
     margin-bottom: 1rem !important;
 }
 
+/* ── Custom block widget ──────────────────────────────────── */
+.custom-block-widget-box {
+    padding: 0 !important;
+}
+
+/* ── Child table rows ─────────────────────────────────────── */
+.grid-row .grid-col,
+.grid-row td,
+.grid-row .static-area {
+    font-size: var(--fs-sm) !important;
+}
+
 /* ── Widget body / links widget ───────────────────────────── */
 .widget.links-widget-box {
     padding: 0 !important;
@@ -914,6 +948,15 @@ div[card_name] {
     font-family: var(--vd-font) !important;
 }
 
+/* ── Empty widget head: hide chrome ──────────────────────── */
+.widget-head:empty,
+.widget-head:has(.widget-title:empty):not(:has(button)) {
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    border-bottom: none !important;
+}
+
 /* ── Shortcut widget head: compact button style ────────────── */
 .shortcut-widget-box > .widget-head {
     border-left: none !important;
@@ -927,19 +970,31 @@ div[card_name] {
     letter-spacing: 0.08em !important;
 }
 
-/* ── CE header: section-head style ────────────────────────── */
+/* ── CE header: warm tint ──────────────────────────────────── */
 .ce-header {
     border-left: 3px solid var(--vd-accent, #6b5b95) !important;
-    background: #f9fafb !important;
-    padding: 10px 16px !important;
-    border-bottom: 1px solid #eef1f6 !important;
+    background: #faf8ff !important;
+    padding: 10px 16px 7px 12px !important;
+    border-bottom: 1px solid #ede9f8 !important;
     margin-bottom: 0 !important;
-    font-size: var(--fs-xs) !important;
+    display: flex !important;
+    align-items: baseline !important;
+    gap: 8px !important;
+    font-size: 11px !important;
     font-weight: 700 !important;
+    text-transform: none !important;
+    letter-spacing: -0.01em !important;
+    color: #2d1f6e !important;
+    line-height: var(--lh-tight) !important;
+    font-family: var(--vd-font) !important;
+}
+.ce-header::after {
+    content: 'Section' !important;
+    font-size: 9px !important;
+    font-weight: 600 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.06em !important;
-    color: #374151 !important;
-    line-height: var(--lh-tight) !important;
+    color: #9ca3af !important;
     font-family: var(--vd-font) !important;
 }
 

@@ -1,4 +1,4 @@
-frappe.provide("vernon_desk");
+window.vernon_desk = window.vernon_desk || {};
 
 /* ── Module icon map ────────────────────────────────────────── */
 const VD_ICONS = {
