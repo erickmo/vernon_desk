@@ -1270,6 +1270,8 @@ div[card_name] {
 /* ── Workspace footer ──────────────────────────────────────── */
 .workspace-footer {
     padding: 10px 20px !important;
+    height: auto !important;
+    min-height: 30px !important;
 }
 
 /* ── Codex editor redactor ─────────────────────────────────── */
