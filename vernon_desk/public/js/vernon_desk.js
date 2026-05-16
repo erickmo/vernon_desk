@@ -83,8 +83,18 @@ vernon_desk = {
         if (frappe.boot && frappe.boot.sysdefaults) {
             frappe.boot.sysdefaults.app_title = "Vernon";
         }
+        this._patch_favicon();
         this._patch_title();
         this._patch_dom_branding();
+    },
+
+    _patch_favicon() {
+        document.querySelectorAll('link[rel*="icon"]').forEach(el => el.remove());
+        const link = document.createElement("link");
+        link.rel = "icon";
+        link.type = "image/svg+xml";
+        link.href = "/assets/vernon_desk/favicon.svg";
+        document.head.appendChild(link);
     },
 
     _patch_title() {
