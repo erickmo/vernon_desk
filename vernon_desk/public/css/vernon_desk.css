@@ -217,8 +217,17 @@ body::after {
     height: var(--vd-nav1-height) !important;
     display: flex !important; align-items: center !important;
 }
-.navbar-brand.navbar-home img,
-.navbar-brand.navbar-home .app-logo { display: none !important; }
+.navbar-brand.navbar-home { display: none !important; }
+
+/* ── Branding: hide Frappe/ERPNext elements ─────────────── */
+.powered-by,
+.frappe-powered,
+[class*="powered-by"],
+.frappe-footer-brand { display: none !important; }
+.help-links a[href*="frappe.io"],
+.help-links a[href*="erpnext.com"],
+.help-links a[href*="frappeframework"],
+.help-links a[href*="discuss.frappe.io"] { display: none !important; }
 
 .navbar .nav > li > a {
     color: rgba(0, 0, 0, 0.55) !important;

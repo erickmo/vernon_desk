@@ -68,6 +68,7 @@ vernon_desk = {
     _nm_open: null,
 
     init() {
+        this.patch_branding();
         $(document).on("toolbar_setup", () => {
             this.apply_theme();
             this.setup_nav1();
@@ -75,6 +76,65 @@ vernon_desk = {
             this.setup_nav2();
             this.bind_route_change();
         });
+    },
+
+    /* ── Branding: replace Frappe/ERPNext → Vernon ─────────── */
+    patch_branding() {
+        if (frappe.boot && frappe.boot.sysdefaults) {
+            frappe.boot.sysdefaults.app_title = "Vernon";
+        }
+        this._patch_title();
+        this._patch_dom_branding();
+    },
+
+    _patch_title() {
+        if (document._vd_title_patched) return;
+        document._vd_title_patched = true;
+        const desc = Object.getOwnPropertyDescriptor(Document.prototype, "title");
+        Object.defineProperty(document, "title", {
+            get() { return desc.get.call(this); },
+            set(val) {
+                const v = String(val)
+                    .replace(/\bFrappe\b/g, "Vernon")
+                    .replace(/\bERPNext\b/g, "Vernon");
+                desc.set.call(this, v);
+            },
+            configurable: true,
+        });
+        document.title = document.title;
+    },
+
+    _patch_dom_branding() {
+        const SAFE_SELECTORS = [
+            ".navbar",
+            ".help-links",
+            ".frappe-loading-status",
+            ".breadcrumb",
+        ];
+
+        function replaceInNode(node) {
+            if (node.nodeType === Node.TEXT_NODE) {
+                const v = node.nodeValue;
+                if (/\bFrappe\b|\bERPNext\b/.test(v)) {
+                    node.nodeValue = v
+                        .replace(/\bFrappe\b/g, "Vernon")
+                        .replace(/\bERPNext\b/g, "Vernon");
+                }
+            } else if (node.nodeType === Node.ELEMENT_NODE) {
+                node.childNodes.forEach(replaceInNode);
+            }
+        }
+
+        function scanSafeZones() {
+            SAFE_SELECTORS.forEach(sel => {
+                document.querySelectorAll(sel).forEach(replaceInNode);
+            });
+        }
+
+        scanSafeZones();
+
+        const obs = new MutationObserver(() => scanSafeZones());
+        obs.observe(document.body, { childList: true, subtree: true, characterData: true });
     },
 
     apply_theme() {
