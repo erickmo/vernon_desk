@@ -567,7 +567,7 @@ body::after {
     gap: 8px !important;
 }
 .form-section .section-head .section-title {
-    font-size: 11px !important;
+    font-size: var(--fs-sm) !important;
     font-weight: 700 !important;
     text-transform: none !important;
     letter-spacing: -0.01em !important;
@@ -980,7 +980,7 @@ div[card_name] {
     display: flex !important;
     align-items: baseline !important;
     gap: 8px !important;
-    font-size: 11px !important;
+    font-size: var(--fs-sm) !important;
     font-weight: 700 !important;
     text-transform: none !important;
     letter-spacing: -0.01em !important;
@@ -990,7 +990,7 @@ div[card_name] {
 }
 .ce-header::after {
     content: 'Section' !important;
-    font-size: 9px !important;
+    font-size: var(--fs-2xs) !important;
     font-weight: 600 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.06em !important;
@@ -1052,7 +1052,7 @@ div[card_name] {
 }
 [data-vd-theme="light_stripe"] .list-header .list-col,
 [data-vd-theme="light_stripe"] .list-header .column-header {
-    font-size: 11px !important;
+    font-size: var(--fs-sm) !important;
     font-weight: 600 !important;
     text-transform: uppercase !important;
     letter-spacing: .06em !important;
@@ -1096,7 +1096,7 @@ div[card_name] {
     justify-content: space-between !important;
 }
 [data-vd-theme="light_stripe"] .list-pager .btn-pager {
-    font-size: 12px !important;
+    font-size: var(--fs-sm) !important;
     border: 1px solid #e1e4e8 !important;
     border-radius: 6px !important;
     background: #ffffff !important;
@@ -1124,7 +1124,7 @@ div[card_name] {
     padding: 10px 16px !important;
 }
 [data-vd-theme="light_stripe"] .section-head .section-head-content {
-    font-size: 11px !important;
+    font-size: var(--fs-sm) !important;
     font-weight: 700 !important;
     text-transform: uppercase !important;
     letter-spacing: .07em !important;
@@ -1135,7 +1135,7 @@ div[card_name] {
 }
 [data-vd-theme="light_stripe"] .frappe-control label.control-label,
 [data-vd-theme="light_stripe"] .frappe-control .control-label {
-    font-size: 11px !important;
+    font-size: var(--fs-sm) !important;
     font-weight: 600 !important;
     text-transform: uppercase !important;
     letter-spacing: .06em !important;
@@ -1148,7 +1148,7 @@ div[card_name] {
     border-radius: 6px !important;
     background: #ffffff !important;
     color: #24292f !important;
-    font-size: 13px !important;
+    font-size: var(--fs-base) !important;
 }
 [data-vd-theme="light_stripe"] .frappe-control input.form-control:focus,
 [data-vd-theme="light_stripe"] .frappe-control textarea.form-control:focus {
@@ -1160,7 +1160,7 @@ div[card_name] {
     border-bottom: 1px solid #e1e4e8 !important;
 }
 [data-vd-theme="light_stripe"] .grid-heading-row .grid-col {
-    font-size: 11px !important;
+    font-size: var(--fs-sm) !important;
     font-weight: 600 !important;
     text-transform: uppercase !important;
     letter-spacing: .05em !important;
@@ -1174,7 +1174,7 @@ div[card_name] {
 }
 [data-vd-theme="light_stripe"] .grid-footer .btn-open-row,
 [data-vd-theme="light_stripe"] .grid-add-row {
-    font-size: 12px !important;
+    font-size: var(--fs-sm) !important;
     color: #0969da !important;
     border: 1px solid #0969da !important;
     border-radius: 6px !important;
@@ -1182,7 +1182,7 @@ div[card_name] {
     padding: 3px 10px !important;
 }
 [data-vd-theme="light_stripe"] .page-head .indicator-pill {
-    font-size: 11px !important;
+    font-size: var(--fs-sm) !important;
     font-weight: 600 !important;
     border-radius: 20px !important;
     padding: 2px 10px !important;
@@ -1191,7 +1191,7 @@ div[card_name] {
     background: #0969da !important;
     border-color: #0969da !important;
     border-radius: 6px !important;
-    font-size: 13px !important;
+    font-size: var(--fs-base) !important;
     font-weight: 500 !important;
 }
 [data-vd-theme="light_stripe"] .page-actions .btn-secondary,
@@ -1211,14 +1211,14 @@ div[card_name] {
     box-shadow: none !important;
 }
 [data-vd-theme="light_stripe"] .number-widget-box .widget-head .widget-title {
-    font-size: 11px !important;
+    font-size: var(--fs-sm) !important;
     font-weight: 600 !important;
     text-transform: uppercase !important;
     letter-spacing: .07em !important;
     color: #6e7781 !important;
 }
 [data-vd-theme="light_stripe"] .number-widget-box .widget-body .number {
-    font-size: 22px !important;
+    font-size: var(--fs-2xl) !important;
     font-weight: 700 !important;
     color: #24292f !important;
     font-variant-numeric: tabular-nums !important;
@@ -1239,7 +1239,7 @@ div[card_name] {
     background: #ffffff !important;
 }
 [data-vd-theme="light_stripe"] .widget.chart-widget .widget-head .widget-title {
-    font-size: 12px !important;
+    font-size: var(--fs-sm) !important;
     font-weight: 700 !important;
     color: #24292f !important;
     text-transform: none !important;
