@@ -219,8 +219,30 @@
 
     /* ── Behavior: the ONE async action ──────────────────────────── */
 
+    /* Red failure toast (insert failed or returned no document). */
+    function fail_alert() {
+        frappe.show_alert({ message: __("Gagal menyimpan"), indicator: "red" });
+    }
+
+    /* Submit a freshly-inserted doc. On failure the draft is still saved, so
+       tell the user it was saved-but-not-submitted and still reset (on_done).
+       Both the resolved-with-exc and rejected paths are handled, no silent gap. */
+    function submit_created(cfg, created, on_done) {
+        function draft_only() {
+            frappe.show_alert({ message: __("Tersimpan sebagai draf, gagal diajukan"), indicator: "orange" });
+            on_done();
+        }
+        return frappe.call({ method: "frappe.client.submit", args: { doc: created } })
+            .then(function (r) {
+                if (r && !r.exc && r.message) { announce(cfg, created); on_done(); }
+                else draft_only();
+            })
+            .fail(draft_only);
+    }
+
     /* Validate, insert via the generic client API (server controllers do all
-       business logic), optionally submit, then announce + reset. */
+       business logic), optionally submit, then announce + reset. Every error
+       path surfaces a toast — never a silent frozen-then-unfrozen screen. */
     function save_doc(cfg, controls, child_rows, do_submit, on_done) {
         var missing = validate(cfg, controls, child_rows);
         if (missing.length) {
@@ -231,15 +253,13 @@
         frappe.dom.freeze(__("Menyimpan…"));
         frappe.call({ method: "frappe.client.insert", args: { doc: doc } })
             .then(function (r) {
-                var created = r && r.message;
-                if (!created) return;
-                if (do_submit && cfg.submittable) {
-                    return frappe.call({ method: "frappe.client.submit", args: { doc: created } })
-                        .then(function () { announce(cfg, created); on_done(); });
-                }
+                var created = r && !r.exc && r.message;
+                if (!created) return fail_alert();        // exc or no doc returned
+                if (do_submit && cfg.submittable) return submit_created(cfg, created, on_done);
                 announce(cfg, created);
                 on_done();
             })
+            .fail(fail_alert)
             .always(function () { frappe.dom.unfreeze(); });
     }
 

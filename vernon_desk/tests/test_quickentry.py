@@ -75,13 +75,19 @@ class TestQuickEntryDataModel(unittest.TestCase):
         self.assertTrue(used.issubset(alias_keys), "field uses undefined T.* alias: " + str(used - alias_keys))
 
     def test_reqd_select_defaults_are_valid_options(self):
-        # Every reqd Select default must be one of its newline options, else
-        # validate() would falsely flag a defaulted field as missing.
-        all_options = set()
-        for block in re.findall(r'options:\s*"([^"]*)"', self.js):
-            all_options.update(block.split("\\n"))
-        for default in ("Material Receipt", "Receive", "Customer"):
-            self.assertIn(default, all_options, default + " is not a declared Select option")
+        # Every Select field's default must be one of THAT field's own newline
+        # options, else validate() would falsely flag a defaulted field as
+        # missing. Bind per-field (a global option pool would false-pass when an
+        # unrelated Link field happens to share the same option value).
+        select_blocks = re.findall(r"\{[^{}]*fieldtype:\s*T\.SELECT[^{}]*\}", self.js)
+        self.assertEqual(len(select_blocks), 3, "expected 3 Select fields (stock type, payment type, party type)")
+        for block in select_blocks:
+            opts = re.search(r'options:\s*"([^"]*)"', block)
+            deft = re.search(r'default:\s*"([^"]*)"', block)
+            self.assertIsNotNone(opts, "Select field without options: " + block)
+            self.assertIsNotNone(deft, "Select field without default: " + block)
+            options = opts.group(1).split("\\n")
+            self.assertIn(deft.group(1), options, deft.group(1) + " not in its own options " + str(options))
 
     def test_data_exposes_window_global(self):
         self.assertIn("window.VernonDeskQuickEntryData", self.js)
