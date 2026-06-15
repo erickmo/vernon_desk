@@ -1,0 +1,60 @@
+{
+ "charts": [],
+ "content": "[{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Input Cepat</b></span>\",\"col\":12}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Faktur Penjualan\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Faktur Pembelian\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Input Stok\",\"col\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Pembayaran\",\"col\":3}}]",
+ "creation": "2026-06-15 00:00:00.000000",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "tool",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "Vernon Desk",
+ "links": [],
+ "module": "Vernon Desk",
+ "modified": "2026-06-15 00:00:00.000000",
+ "modified_by": "Administrator",
+ "name": "Vernon Desk",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "roles": [],
+ "sequence_id": 100.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "",
+   "is_query_report": 0,
+   "label": "Faktur Penjualan",
+   "link_to": "sales-quick-invoice",
+   "type": "Page"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "",
+   "is_query_report": 0,
+   "label": "Faktur Pembelian",
+   "link_to": "purchase-quick-invoice",
+   "type": "Page"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "",
+   "is_query_report": 0,
+   "label": "Input Stok",
+   "link_to": "stock-quick-entry",
+   "type": "Page"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "",
+   "is_query_report": 0,
+   "label": "Pembayaran",
+   "link_to": "payment-quick-entry",
+   "type": "Page"
+  }
+ ],
+ "title": "Vernon Desk"
+}

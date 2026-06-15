@@ -24,6 +24,9 @@ PAGE_DIR = os.path.join(APP_DIR, "vernon_desk", "page")
 ENGINE_JS = os.path.join(APP_DIR, "public", "js", "vernon_desk_quickentry.js")
 DATA_JS = os.path.join(APP_DIR, "public", "js", "vernon_desk_quickentry_data.js")
 QE_CSS = os.path.join(APP_DIR, "public", "css", "vernon_desk_quickentry.css")
+# Standard module workspace (synced on migrate without node — a fixture import
+# shells out to node, which is absent in the runtime backend container).
+WORKSPACE_JSON = os.path.join(APP_DIR, "vernon_desk", "workspace", "vernon_desk", "vernon_desk.json")
 
 # dir_name -> (page slug, page title, render key)
 PAGES = {
@@ -161,30 +164,30 @@ class TestSharedAssets(unittest.TestCase):
         )
 
 
-class TestWorkspaceFixture(unittest.TestCase):
-    """The workspace fixture exposes a Page shortcut to each quick-entry page."""
+class TestWorkspaceRecord(unittest.TestCase):
+    """The standard module workspace exposes a Page shortcut to each page."""
 
-    def test_fixture_has_four_quickentry_shortcuts(self):
-        path = os.path.join(APP_DIR, "fixtures", "workspace.json")
-        self.assertTrue(os.path.exists(path), "missing " + path)
-        records = json.loads(_read(path))
-        shortcuts = []
-        for ws in records:
-            shortcuts.extend(ws.get("shortcuts", []))
-        targets = {s.get("link_to") for s in shortcuts if s.get("type") == "Page"}
+    @classmethod
+    def setUpClass(cls):
+        cls.ws = json.loads(_read(WORKSPACE_JSON))
+
+    def test_is_standard_vernon_desk_workspace(self):
+        self.assertEqual(self.ws["doctype"], "Workspace")
+        self.assertEqual(self.ws["name"], "Vernon Desk")
+        self.assertEqual(self.ws["module"], "Vernon Desk")
+
+    def test_has_four_quickentry_page_shortcuts(self):
+        targets = {s.get("link_to") for s in self.ws.get("shortcuts", []) if s.get("type") == "Page"}
         for _dir, (slug, _title, _key) in PAGES.items():
             self.assertIn(slug, targets, "no workspace shortcut for " + slug)
 
     def test_content_shortcut_names_match_shortcut_labels(self):
         # A content 'shortcut' block references its shortcut by shortcut_name,
         # which must equal a shortcut row's label or it renders blank.
-        path = os.path.join(APP_DIR, "fixtures", "workspace.json")
-        records = json.loads(_read(path))
-        for ws in records:
-            labels = {s.get("label") for s in ws.get("shortcuts", [])}
-            content = json.loads(ws.get("content", "[]"))
-            names = {b["data"]["shortcut_name"] for b in content if b.get("type") == "shortcut"}
-            self.assertTrue(names.issubset(labels), "content shortcut_name without a matching label: " + str(names - labels))
+        labels = {s.get("label") for s in self.ws.get("shortcuts", [])}
+        content = json.loads(self.ws.get("content", "[]"))
+        names = {b["data"]["shortcut_name"] for b in content if b.get("type") == "shortcut"}
+        self.assertTrue(names.issubset(labels), "content shortcut_name without a matching label: " + str(names - labels))
 
 
 if __name__ == "__main__":

@@ -20,9 +20,6 @@ app_include_js = [
     "/assets/vernon_desk/js/vernon_desk_quickentry.js",
 ]
 
-fixtures = [
-    {
-        "doctype": "Workspace",
-        "filters": [["module", "in", ["Vernon Desk"]]]
-    }
-]
+# Workspaces ship as STANDARD module workspaces (vernon_desk/workspace/…), not
+# fixtures: a Workspace fixture import shells out to node, which is absent in
+# the runtime backend container, so it would break `bench migrate`.
