@@ -1002,3 +1002,31 @@ git commit -m "docs(quick-entry): catat status di implementation tracker" || ech
 - **Decisions** → Draft+Submit buttons (Task 2 footer; payment draft-only per §8); reset after save (Task 2 `reset`); workspace shortcuts (Task 4). ✅
 - **Placeholder scan** → no TBD/TODO; all code blocks complete. ✅
 - **Type consistency** → `render(body,key)`, `make_field(parent,df,get_sibling)`, `build_child` returns `{el,rows}`, `save_doc(cfg,controls,child_rows,do_submit,on_done)` used consistently across tasks. ✅
+
+---
+
+## Hardening applied (post-audit + post-review)
+
+The implemented code diverges slightly from the task code blocks above because two
+multi-agent adversarial passes (against this bench's real Frappe usages) hardened it:
+
+**Pre-implementation audit fixes (applied):**
+- `make_field`: dropped the eager `control.refresh()` and the `set_value("")` on fresh
+  Link controls (left a stale awesomplete); removed dead `control.df._qe`.
+- `wire_dynamic_link` (Payment Entry `party`←`party_type`): seeds `dep.df.options` to the
+  source default and guards the repoint with a last-value check so programmatic change
+  events don't wipe a typed party.
+- `validate()` uses an explicit-empty test so a numeric `0` / `paid_amount` is not flagged
+  missing; pushes a friendly "atur Default Company" message instead of a raw server error.
+- `render()` uses `$(root).empty()` (handler teardown) instead of `innerHTML`.
+
+**Post-implementation review fixes (applied):**
+- `save_doc`: added `.fail` + explicit failure toast; the `if(!created)` branch now toasts
+  instead of silently returning; submit failure shows "Tersimpan sebagai draf, gagal
+  diajukan" (no silent orphaned draft). New helper `submit_created()`.
+- `test_reqd_select_defaults_are_valid_options`: binds each Select default to its OWN
+  field's options (the global pool false-passed when a Link shared the value).
+
+All 15 static tests pass; engine passes `node --check`. **Still pending (needs a live
+ERPNext site):** Task 5 — `bench build`, `bench migrate` (workspace import), and the
+manual acceptance checklist.
