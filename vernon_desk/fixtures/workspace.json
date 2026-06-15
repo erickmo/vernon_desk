@@ -1,0 +1,23 @@
+[
+ {
+  "doctype": "Workspace",
+  "name": "Vernon Desk",
+  "label": "Vernon Desk",
+  "title": "Vernon Desk",
+  "module": "Vernon Desk",
+  "public": 1,
+  "is_hidden": 0,
+  "is_standard": 1,
+  "icon": "tool",
+  "sequence_id": 100.0,
+  "content": "[{\"id\":\"qe_header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Input Cepat</span>\",\"col\":12}},{\"id\":\"qe_sales\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Faktur Penjualan\",\"col\":3}},{\"id\":\"qe_purchase\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Faktur Pembelian\",\"col\":3}},{\"id\":\"qe_stock\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Input Stok\",\"col\":3}},{\"id\":\"qe_payment\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Pembayaran\",\"col\":3}}]",
+  "shortcuts": [
+   { "type": "Page", "link_to": "sales-quick-invoice", "label": "Faktur Penjualan", "color": "Grey", "doc_view": "" },
+   { "type": "Page", "link_to": "purchase-quick-invoice", "label": "Faktur Pembelian", "color": "Grey", "doc_view": "" },
+   { "type": "Page", "link_to": "stock-quick-entry", "label": "Input Stok", "color": "Grey", "doc_view": "" },
+   { "type": "Page", "link_to": "payment-quick-entry", "label": "Pembayaran", "color": "Grey", "doc_view": "" }
+  ],
+  "links": [],
+  "roles": []
+ }
+]

@@ -1,0 +1,11 @@
+{
+ "doctype": "Page",
+ "name": "payment-quick-entry",
+ "page_name": "payment-quick-entry",
+ "title": "Pembayaran Cepat",
+ "module": "Vernon Desk",
+ "standard": "Yes",
+ "system_page": 0,
+ "modified": "2026-06-15 00:00:00",
+ "roles": []
+}
