@@ -1,0 +1,175 @@
+/* ── Vernon Desk · Onboarding Guides ───────────────────────────
+ * Role-swimlane workflow visualizers (Sales / Purchase / Stock) + hub.
+ * Fully themed via existing --vd-* variables → works in all 5 themes.
+ * Every selector scoped under .vd-guide / .vd-hub. No global overrides.
+ * ───────────────────────────────────────────────────────────── */
+
+.vd-guide,
+.vd-hub {
+    /* Derive a local palette from --vd-* with dark-theme-safe fallbacks.
+       light_stripe defines --vd-card-bg/--vd-border/--vd-text/-muted, so the
+       fallbacks only apply to the gradient (dark) themes. */
+    --g-node-bg: var(--vd-card-bg, rgba(255, 255, 255, 0.05));
+    --g-border:  var(--vd-border, rgba(255, 255, 255, 0.13));
+    --g-accent:  var(--vd-accent, #6b5b95);
+    --g-text:    var(--vd-text, #eef0f6);
+    --g-muted:   var(--vd-text-muted, #9aa3b2);
+    /* Small chips/halos need a stronger tint than the nav-tuned --vd-tint
+       (~0.05); derive it from the accent so it stays visible on the dark
+       gradient themes. First decl = static fallback for engines without
+       color-mix; the second wins where supported. */
+    --g-tint:    rgba(124, 109, 160, 0.16);
+    --g-tint:    color-mix(in srgb, var(--g-accent) 15%, transparent);
+    /* Opaque background for the sticky lane label so scrolling cells do
+       not bleed through. light_stripe -> white; dark themes -> opaque dark. */
+    --g-lane-bg: var(--vd-card-bg, #14122b);
+    /* Hover lift shadow (tokenised so a theme can override it). */
+    --g-shadow:  var(--vd-shadow, rgba(0, 0, 0, 0.45));
+    --g-lane-w:  138px;
+
+    font-family: var(--vd-font, 'Inter', -apple-system, sans-serif);
+    color: var(--g-text);
+    padding: 4px 2px 44px;
+}
+
+/* ── Hero ─────────────────────────────────────────────────────── */
+.vd-guide__hero { margin: 8px 4px 24px; max-width: 900px; }
+.vd-guide__eyebrow {
+    display: inline-block; font-size: var(--fs-2xs); font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--g-accent); margin-bottom: 8px;
+}
+.vd-guide__title {
+    font-size: var(--fs-2xl); font-weight: 800; line-height: var(--lh-tight);
+    margin: 0 0 6px; color: var(--g-text);
+}
+.vd-guide__subtitle { font-size: var(--fs-lg); color: var(--g-muted); margin: 0 0 12px; }
+.vd-guide__intro {
+    font-size: var(--fs-base); line-height: var(--lh-normal);
+    color: var(--g-muted); margin: 0;
+}
+
+/* ── Legend ───────────────────────────────────────────────────── */
+.vd-guide__legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 4px 18px; }
+.vd-lane-chip {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 5px 13px 5px 7px; border-radius: 999px;
+    background: var(--g-tint); border: 1px solid var(--g-border);
+    font-size: var(--fs-xs); font-weight: 600; color: var(--g-text);
+}
+/* Emoji glyph sizes (here and on the other __icon rules) are fixed icon
+   sizes, not body text, so they stay in px rather than the --fs-* scale. */
+.vd-lane-chip__icon {
+    width: 22px; height: 22px; display: grid; place-items: center;
+    border-radius: 50%; background: var(--g-node-bg); font-size: 12px;
+}
+
+/* ── Swimlane grid ────────────────────────────────────────────── */
+.vd-swim__scroll { overflow-x: auto; padding: 4px; margin: 0 -2px; }
+.vd-swim {
+    display: grid; gap: 10px; min-width: 780px;
+    /* grid-template-columns is set inline by the renderer:
+       var(--g-lane-w) repeat(<stage_count>, minmax(150px, 1fr)) */
+}
+
+/* step-header row */
+.vd-swim__corner { min-height: 1px; }
+.vd-swim__step {
+    position: relative; display: flex; align-items: center; justify-content: center;
+    min-height: 30px;
+}
+.vd-swim__step::before {                 /* connector rail to previous step */
+    content: ""; position: absolute; top: 50%; left: -50%; right: 50%;
+    height: 2px; background: var(--g-border); transform: translateY(-50%);
+}
+.vd-swim__step:first-of-type::before { display: none; }
+.vd-swim__num {
+    position: relative; z-index: 1; width: 26px; height: 26px;
+    display: grid; place-items: center; border-radius: 50%;
+    background: var(--g-accent); color: var(--vd-on-accent, #fff);
+    font-size: var(--fs-xs); font-weight: 700;
+    box-shadow: 0 0 0 4px var(--g-tint);
+}
+
+/* lane label cell (sticky on horizontal scroll) */
+.vd-swim__lane {
+    display: flex; align-items: center; gap: 8px;
+    font-size: var(--fs-xs); font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--g-muted);
+    position: sticky; left: 0; z-index: 2; background: var(--g-lane-bg);
+}
+.vd-swim__lane-icon {
+    width: 26px; height: 26px; flex: none; display: grid; place-items: center;
+    border-radius: 8px; background: var(--g-tint); font-size: 14px;
+}
+
+/* stage cells */
+.vd-swim__cell { display: flex; }
+.vd-swim__cell.is-empty { align-items: center; justify-content: center; min-height: 44px; }
+.vd-swim__cell.is-empty::after {
+    content: ""; width: 100%; border-top: 2px dotted var(--g-border); opacity: 0.55;
+}
+
+/* ── Node card ────────────────────────────────────────────────── */
+.vd-node {
+    display: flex; flex-direction: column; gap: 6px; width: 100%;
+    padding: 12px 12px 11px; border-radius: var(--vd-radius, 10px);
+    background: var(--g-node-bg); border: 1px solid var(--g-border);
+    border-left: 3px solid transparent; cursor: pointer; text-align: left;
+    transition: transform 0.16s var(--vd-ease, ease), border-color 0.16s, box-shadow 0.16s;
+}
+.vd-node:hover {
+    transform: translateY(-3px); border-left-color: var(--g-accent);
+    box-shadow: 0 10px 24px -12px var(--g-shadow);
+}
+.vd-node:focus-visible { outline: 2px solid var(--g-accent); outline-offset: 2px; }
+.vd-node__head { display: flex; align-items: center; gap: 8px; }
+.vd-node__icon {
+    width: 28px; height: 28px; flex: none; display: grid; place-items: center;
+    border-radius: 8px; background: var(--g-tint); font-size: 15px;
+}
+.vd-node__label {
+    font-size: var(--fs-sm); font-weight: 700; line-height: var(--lh-snug); color: var(--g-text);
+}
+.vd-node__desc { font-size: var(--fs-xs); color: var(--g-muted); line-height: var(--lh-snug); }
+.vd-node__tip {
+    font-size: var(--fs-2xs); color: var(--g-muted); line-height: var(--lh-snug);
+    padding-top: 6px; border-top: 1px dashed var(--g-border); opacity: 0.92;
+}
+.vd-node__cta {
+    margin-top: 4px; align-self: flex-start; display: inline-flex; align-items: center;
+    gap: 4px; font-size: var(--fs-2xs); font-weight: 700; color: var(--g-accent);
+    text-transform: uppercase; letter-spacing: 0.04em;
+}
+
+/* ── Hub ──────────────────────────────────────────────────────── */
+.vd-hub__grid {
+    display: grid; gap: 16px; margin-top: 8px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+.vd-hub__card {
+    display: flex; flex-direction: column; gap: 10px; padding: 22px 20px;
+    border-radius: 14px; background: var(--g-node-bg); border: 1px solid var(--g-border);
+    cursor: pointer; text-align: left;
+    transition: transform 0.16s var(--vd-ease, ease), border-color 0.16s, box-shadow 0.16s;
+}
+.vd-hub__card:hover {
+    transform: translateY(-4px); border-color: var(--g-accent);
+    box-shadow: 0 16px 36px -18px var(--g-shadow);
+}
+.vd-hub__icon {
+    width: 52px; height: 52px; display: grid; place-items: center;
+    border-radius: 14px; background: var(--g-tint); font-size: 26px;
+}
+.vd-hub__title { font-size: var(--fs-lg); font-weight: 800; color: var(--g-text); }
+.vd-hub__desc { font-size: var(--fs-sm); color: var(--g-muted); line-height: var(--lh-normal); }
+.vd-hub__meta {
+    margin-top: auto; padding-top: 10px; font-size: var(--fs-2xs); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.05em; color: var(--g-accent);
+}
+
+/* ── Responsive ───────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .vd-swim { min-width: 700px; }
+    .vd-guide__legend { gap: 6px; }
+}

@@ -7,8 +7,15 @@ app_license = "mit"
 
 boot_session = "vernon_desk.boot.inject_desk_settings"
 
-app_include_css = ["/assets/vernon_desk/css/vernon_desk.css"]
-app_include_js = ["/assets/vernon_desk/js/vernon_desk.js"]
+app_include_css = [
+    "/assets/vernon_desk/css/vernon_desk.css",
+    "/assets/vernon_desk/css/vernon_desk_guides.css",
+]
+app_include_js = [
+    "/assets/vernon_desk/js/vernon_desk.js",
+    "/assets/vernon_desk/js/vernon_desk_guides_data.js",
+    "/assets/vernon_desk/js/vernon_desk_guides.js",
+]
 
 fixtures = [
     {
