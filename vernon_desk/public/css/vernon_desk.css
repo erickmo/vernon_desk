@@ -50,6 +50,7 @@
     --vd-orb1:        rgba(52, 211, 153, 0.30);
     --vd-orb2:        rgba(139, 92, 246, 0.22);
     --vd-accent:      #34d399;
+    --vd-on-accent:   #04210f;   /* dark text: white fails WCAG on light-green accent */
     --vd-accent2:     #6366f1;
     --vd-tint:        rgba(52, 211, 153, 0.05);
     --vd-logo-color:  #059669;
